@@ -6,45 +6,55 @@ using UnityEngine;
 public class GoldenThread : MonoBehaviour
 {
     public PlayerMovement pm;
+    public PlayerHealth ph;
     public float height;
 
     private LineRenderer rend;
     private bool locked = false;
+    private bool allowPath = true;
 
     private void OnValidate()
     {
-        rend = GetComponent<LineRenderer>();
+        GetLineRenderer();
     }
 
     private void Start()
     {
-        if (rend == null)
-        {
-            rend = GetComponent<LineRenderer>();
-        }
+        GetLineRenderer();
 
         pm.OnPlayerEnterCell += Thread_OnPlayerEnterCell;
         pm.OnPlayerEnterCheckpoint += Thread_OnPlayerEnterCheckpoint;
+
+        ph.OnPlayerDeath += Thread_OnPlayerDeath;
     }
 
     private void Thread_OnPlayerEnterCell(object sender, PlayerMovement.OnPlayerEnterCellEventArgs pos)
     {
         //Check if already visited (it'll be the second to last on the list)
 
-        if (rend.positionCount > 1)
+        if (allowPath)
         {
-            Vector3 v = rend.GetPosition(rend.positionCount - 2);
-            Debug.Log($"Comparing ({v.x}, {v.y}, {v.z}) to ({pos.position.x}, {pos.position.y}, {pos.position.z})");
-        }
+            if (rend.positionCount > 1)
+            {
+                Vector3 v = rend.GetPosition(rend.positionCount - 2);
+            }
 
-        if (rend.positionCount > 1 && Vector3XZEquals(rend.GetPosition(rend.positionCount - 2), pos.position))
-        {
-            rend.positionCount--;
+            if (rend.positionCount > 1 && Vector3XZEquals(rend.GetPosition(rend.positionCount - 2), pos.position))
+            {
+                rend.positionCount--;
+            }
+            else
+            {
+                rend.positionCount++;
+                rend.SetPosition(rend.positionCount - 1, pos.position + (Vector3.up * height));
+            }
         }
         else
         {
-            rend.positionCount++;
-            rend.SetPosition(rend.positionCount - 1, pos.position + (Vector3.up * height));
+            if (rend.positionCount > 0 && Vector3XZEquals(rend.GetPosition(rend.positionCount - 1), pos.position))
+            {
+                allowPath = true;
+            }
         }
     }
 
@@ -56,7 +66,10 @@ public class GoldenThread : MonoBehaviour
         pm.OnPlayerEnterCell -= Thread_OnPlayerEnterCell;
 
         //Then, we'll make a new thread for the next segment, and that *will* be subscribed
-        Instantiate(this, transform.parent);
+        GoldenThread newThread = Instantiate(this, transform.parent);
+        newThread.GetLineRenderer();
+        newThread.rend.positionCount = 1;
+        newThread.rend.SetPosition(0, pos.position);
 
         //And then we won't need to do any further stuff
         pm.OnPlayerEnterCheckpoint -= Thread_OnPlayerEnterCheckpoint;
@@ -67,11 +80,28 @@ public class GoldenThread : MonoBehaviour
         return (Mathf.Abs(v1.x - v2.x) < 0.01f) &&(Mathf.Abs(v1.z - v2.z) < 0.01f);
     }
 
+    private void Thread_OnPlayerDeath()
+    {
+        if (!locked)
+        {
+            rend.positionCount = 1;
+            allowPath = false;
+        }
+    }
+
     private bool Locked
     {
         get
         {
             return locked;
+        }
+    }
+
+    private void GetLineRenderer()
+    {
+        if (rend == null)
+        {
+            rend = GetComponent<LineRenderer>();
         }
     }
 }

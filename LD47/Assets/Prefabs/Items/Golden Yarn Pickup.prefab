@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 615634731389941521}
   - component: {fileID: 5566937103740942475}
   m_Layer: 0
-  m_Name: Golden Yarn
+  m_Name: Golden Yarn Pickup
   m_TagString: Collectible
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

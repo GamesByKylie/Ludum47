@@ -13,17 +13,26 @@ public class PlayerMovement : MonoBehaviour
     {
         public Vector3 position;
     }
+
+    public StartMaze sm;
+    public MazeGenerator mg;
+
+    [Header("General Movement")]
     public float speed;
     public float rotSpeed;
     public Vector2 rotLimits;
 
     private Rigidbody rb;
+    private PlayerHealth ph;
+    private PlayerAttack pa;
     private Camera cam;
 
     private void OnValidate()
     {
         rb = GetComponent<Rigidbody>();
         cam = GetComponentInChildren<Camera>();
+        ph = GetComponent<PlayerHealth>();
+        pa = GetComponent<PlayerAttack>();
     }
 
     private void Start()
@@ -36,6 +45,12 @@ public class PlayerMovement : MonoBehaviour
         {
             cam = GetComponentInChildren<Camera>();
         }
+
+        sm.OnMazeStart += Player_OnMazeStart;
+        ph.OnPlayerDeath += Movement_OnPlayerDeath;
+
+        ph.enabled = false;
+        pa.enabled = false;
     }
 
 
@@ -86,7 +101,34 @@ public class PlayerMovement : MonoBehaviour
         else if (other.CompareTag("Checkpoint"))
         {
             OnPlayerEnterCheckpoint?.Invoke(this, new OnPlayerEnterCellEventArgs { position = other.transform.position });
-
         }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Checkpoint Passed"))
+        {
+            other.GetComponentInParent<Cell>().AddWall(Cell.Wall.Front);
+        }
+    }
+
+    private void Player_OnMazeStart()
+    {
+        transform.position = new Vector3(mg.initialPosition.x, 0, mg.initialPosition.y);
+        transform.rotation = Quaternion.Euler(0f, 180f, 0f);
+        ph.enabled = true;
+        pa.enabled = true;
+    }
+
+    private void Movement_OnPlayerDeath()
+    {
+        StartCoroutine(DeactivateHealthAndAttack());
+    }
+
+    private IEnumerator DeactivateHealthAndAttack()
+    {
+        yield return null;
+        ph.enabled = false;
+        pa.enabled = false;
     }
 }

@@ -10,9 +10,14 @@ public class PlayerItems : MonoBehaviour
 
     public GameObject wornCrown;
 
+    private PlayerHealth ph;
+
     private void Start()
     {
+        ph = GetComponent<PlayerHealth>();
         wornCrown.SetActive(false);
+
+        ph.OnPlayerDeath += Items_OnPlayerDeath;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -23,6 +28,7 @@ public class PlayerItems : MonoBehaviour
             if (i.itemName == goldenYarn.itemName)
             {
                 Debug.Log("You just picked up the golden yarn");
+                i.gc.thread.gameObject.SetActive(true);
             }
             else if (i.itemName == sword.itemName)
             {
@@ -41,5 +47,11 @@ public class PlayerItems : MonoBehaviour
 
             Destroy(other.gameObject);
         }
+    }
+
+    private void Items_OnPlayerDeath()
+    {
+        wornCrown.SetActive(false);
+        GetComponent<PlayerAttack>().SwitchWeapon(GetComponent<PlayerAttack>().unarmed);
     }
 }

@@ -15,12 +15,16 @@ public class Attack : MonoBehaviour
 
     private void OnValidate()
     {
-        anim = GetComponentInChildren<Animator>();
+        anim = GetComponent<Animator>();
     }
 
     private void Awake()
     {
         currentWeapon = unarmed;
+        if (anim == null)
+        {
+            anim = GetComponent<Animator>();
+        }
     }
 
     public virtual void DoDamage(Health h)
@@ -31,7 +35,7 @@ public class Attack : MonoBehaviour
     public virtual void PerformAttack()
     {
         Debug.Log("Performing Attack");
-        if (Vector3.Distance(transform.position, target.transform.position) <= currentWeapon.range)
+        if (target != null && Vector3.Distance(transform.position, target.transform.position) <= currentWeapon.range)
         {
             target.TakeDamage(currentWeapon.damage);
         }
