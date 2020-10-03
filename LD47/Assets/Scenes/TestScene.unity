@@ -339,8 +339,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7f40ce26144ecd499003dcbac40dbe7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sections: 0
+  initialPosition: {x: 0, y: 0}
+  mazeParent: {fileID: 1529719483}
+  sections: 5
   dimensions: {x: 10, y: 10}
   cellDimensions: 1.5
   cell: {fileID: 9084794730475928378, guid: e3ff5af7bfb70c64896446cae4677291, type: 3}
-  checkpoint: {fileID: 0}
+  checkpoint: {fileID: 70297960356440293, guid: 3cf52ae10ea8b414c8c43f6f91603918,
+    type: 3}

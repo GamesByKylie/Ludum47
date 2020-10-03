@@ -4,29 +4,41 @@ using UnityEngine;
 
 public class MazeGenerator : MonoBehaviour
 {
+    public Vector2 initialPosition;
+    public Transform mazeParent;
+
+    [Header("Size")]
     public int sections;
     public Vector2Int dimensions;
     public float cellDimensions;
     public Cell cell;
-    public GameObject checkpoint;
+    public Cell checkpoint;
 
     private Cell[,] maze;
     private Stack<Vector2Int> visits;
 
     private void Start()
     {
-        maze = CreateMazeBase(Vector2.zero);
-    }
-
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Space))
+        Vector2 startPos = initialPosition;
+        for (int i = 0; i < sections; i++)
         {
-            CreateMazePaths(maze);
+            maze = CreateMazeBase(startPos, mazeParent);
+            startPos = CreateMazePaths(maze);
+            startPos += Vector2.down * cellDimensions;
+
+            Cell c = Instantiate(checkpoint);
+            c.Create(cellDimensions);
+            c.transform.SetParent(mazeParent);
+            c.RemoveWall(Cell.Wall.Front);
+            c.RemoveWall(Cell.Wall.Back);
+            c.transform.position = new Vector3(startPos.x, 0f, startPos.y);
+            startPos += Vector2.down * cellDimensions;
         }
+        
     }
 
-    private Cell[,] CreateMazeBase(Vector2 startPos)
+
+    private Cell[,] CreateMazeBase(Vector2 startPos, Transform parent)
     {
         Cell[,] mazeGrid = new Cell[dimensions.x, dimensions.y];
 
@@ -38,9 +50,11 @@ public class MazeGenerator : MonoBehaviour
             for (int c = 0; c < dimensions.y; c++)
             {
                 Cell box = Instantiate(cell);
+                box.transform.SetParent(parent);
                 mazeGrid[r, c] = box;
                 box.Create(cellDimensions);
                 box.transform.position = new Vector3(startX, 0f, startY);
+                box.name = $"Maze Cell {r}, {c}";
                 startX += cellDimensions;
             }
             startX = startPos.x;
@@ -70,8 +84,16 @@ public class MazeGenerator : MonoBehaviour
             }
         }
 
-        //Now we need our exit, so look through all the cells in the last row
-        
+        //Now we need our entrance and exit
+        //The entrance is always 0, 0
+        m[0, 0].RemoveWall(Cell.Wall.Front);
+
+        //And the exit will always be somewhere in the last row
+        int i = Random.Range(0, m.GetLength(1));
+        Cell exitCell = m[m.GetLength(0) - 1, i];
+        exitCell.RemoveWall(Cell.Wall.Back);
+        exitPos = new Vector2(exitCell.transform.position.x, exitCell.transform.position.z);
+        Debug.Log($"Exit position of the maze at cell {m.GetLength(0) - 1}, {i}: {exitPos.x}, {exitPos.y}");
 
         return exitPos;
     }
@@ -97,7 +119,6 @@ public class MazeGenerator : MonoBehaviour
 
     private bool Kill(Cell[,] maze, ref Vector2Int index, Stack<Vector2Int> s)
     {
-        Debug.Log($"Kill {index.x}, {index.y}");
         List<Vector2Int> exits = AvailablePath(maze, index);
 
         if (exits.Count == 0)
@@ -112,7 +133,6 @@ public class MazeGenerator : MonoBehaviour
 
         s.Push(exits[i]);
         index = exits[i];
-        Debug.Log($"New index {index.x}, {index.y}");
         maze[index.x, index.y].Visited = true;
 
         return true;
