@@ -790,8 +790,8 @@ MonoBehaviour:
   mazeParent: {fileID: 1247851043}
   minotaurArena: {fileID: 6646006723767779404, guid: d51d3f1881536544baeab967b2b0afae,
     type: 3}
-  sections: 1
-  dimensions: {x: 4, y: 4}
+  sections: 5
+  dimensions: {x: 12, y: 12}
   cellDimensions: 1.5
   cell: {fileID: 9084794730475928378, guid: e3ff5af7bfb70c64896446cae4677291, type: 3}
   checkpoint: {fileID: 70297960356440293, guid: 3cf52ae10ea8b414c8c43f6f91603918,
