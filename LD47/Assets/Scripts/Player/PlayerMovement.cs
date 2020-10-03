@@ -1,9 +1,18 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
+
+
 
 public class PlayerMovement : MonoBehaviour
 {
+
+    public class OnPlayerEnterCellEventArgs : EventArgs
+    {
+        public Vector3 position;
+    }
     public float speed;
     public float rotSpeed;
     public Vector2 rotLimits;
@@ -63,5 +72,21 @@ public class PlayerMovement : MonoBehaviour
 
         cam.transform.localEulerAngles = new Vector3(eulerX, 0f, 0f);
 
+    }
+
+    public event EventHandler<OnPlayerEnterCellEventArgs> OnPlayerEnterCell;
+    public event EventHandler<OnPlayerEnterCellEventArgs> OnPlayerEnterCheckpoint;
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Cell"))
+        {
+            OnPlayerEnterCell?.Invoke(this, new OnPlayerEnterCellEventArgs { position = other.transform.position });
+        }
+        else if (other.CompareTag("Checkpoint"))
+        {
+            OnPlayerEnterCheckpoint?.Invoke(this, new OnPlayerEnterCellEventArgs { position = other.transform.position });
+
+        }
     }
 }
