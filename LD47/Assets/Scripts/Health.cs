@@ -22,7 +22,6 @@ public class Health : MonoBehaviour
         currentHealth -= dmg;
         //Prevent it from going below 0 for graphics reasons
         currentHealth = Mathf.Max(currentHealth, 0f);
-        Debug.Log($"{gameObject.name} health at {currentHealth}");
         UpdateHealthbar();
 
         if (currentHealth <= 0)

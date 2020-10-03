@@ -452,6 +452,7 @@ GameObject:
   - component: {fileID: 846078049}
   - component: {fileID: 846078050}
   - component: {fileID: 846078051}
+  - component: {fileID: 846078052}
   m_Layer: 0
   m_Name: Minotaur
   m_TagString: Untagged
@@ -567,8 +568,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponName: minotaur unarmed
   damage: 25
-  range: 2
-  cooldown: 14
+  range: 3
+  cooldown: 20
+--- !u!114 &846078052
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 846078044}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9fef353ad43309140bb1f9ea7fbf4ffa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 0.25
+  target: {fileID: 1361820340}
+  minDistance: 2
 --- !u!1 &946784059
 GameObject:
   m_ObjectHideFlags: 0
@@ -894,8 +910,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponName: player unarmed
   damage: 10
-  range: 1
-  cooldown: 5
+  range: 2
+  cooldown: 3
 --- !u!1 &1418892570
 GameObject:
   m_ObjectHideFlags: 0
