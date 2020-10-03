@@ -86,7 +86,14 @@ public class PlayerMovement : MonoBehaviour
         else if (other.CompareTag("Checkpoint"))
         {
             OnPlayerEnterCheckpoint?.Invoke(this, new OnPlayerEnterCellEventArgs { position = other.transform.position });
+        }
+    }
 
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Checkpoint Passed"))
+        {
+            other.GetComponentInParent<Cell>().AddWall(Cell.Wall.Front);
         }
     }
 }

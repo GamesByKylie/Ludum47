@@ -10,12 +10,19 @@ public class Cell : MonoBehaviour
     public Transform genericWall;
     public float wallWidth;
     public float wallHeight;
+    public PlayerHealth ph;
 
     private Transform[] walls = new Transform[4];
     private bool visited = false;
 
     public void Create(Vector2 size)
     {
+        if (tag == "Checkpoint")
+        {
+            ph.OnPlayerDeath += Cell_OnPlayerDeath;
+        }
+
+
         transform.localScale = new Vector3(size.x, transform.localScale.y, size.y);
 
         //Walls
@@ -52,6 +59,11 @@ public class Cell : MonoBehaviour
     {
         Create(new Vector2(size, size));
     }
+
+    private void Cell_OnPlayerDeath()
+    {
+        RemoveWall(Wall.Front);
+    }
     
     //private void Update()
     //{
@@ -86,7 +98,15 @@ public class Cell : MonoBehaviour
     {
         if (walls[(int)i] != null)
         {
-            Destroy(walls[(int)i].gameObject);
+            walls[(int)i].gameObject.SetActive(false);
+        }
+    }
+
+    public void AddWall(Wall i)
+    {
+        if (walls[(int)i] != null)
+        {
+            walls[(int)i].gameObject.SetActive(true);
         }
     }
 

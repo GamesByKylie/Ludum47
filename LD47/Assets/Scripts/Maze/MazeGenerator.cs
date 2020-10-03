@@ -27,6 +27,7 @@ public class MazeGenerator : MonoBehaviour
             startPos += Vector2.down * cellDimensions;
 
             Cell c = Instantiate(checkpoint);
+            c.ph = GetComponent<GameController>().ph;
             c.Create(cellDimensions);
             c.transform.SetParent(mazeParent);
             c.RemoveWall(Cell.Wall.Front);
