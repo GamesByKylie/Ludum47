@@ -37,7 +37,6 @@ public class GoldenThread : MonoBehaviour
             if (rend.positionCount > 1)
             {
                 Vector3 v = rend.GetPosition(rend.positionCount - 2);
-                Debug.Log($"Comparing ({v.x}, {v.y}, {v.z}) to ({pos.position.x}, {pos.position.y}, {pos.position.z})");
             }
 
             if (rend.positionCount > 1 && Vector3XZEquals(rend.GetPosition(rend.positionCount - 2), pos.position))

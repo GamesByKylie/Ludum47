@@ -30,7 +30,7 @@ Transform:
   m_GameObject: {fileID: 9084794730475928379}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.37949502, y: 0.92018, z: -1.2944543}
-  m_LocalScale: {x: 3, y: 0.13, z: 3}
+  m_LocalScale: {x: 1.5, y: 0.13, z: 1.5}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -109,9 +109,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   genericWall: {fileID: 5307211131332637123, guid: efc54afe338661e43bbe37e4694d4cf3,
     type: 3}
-  wallWidth: 0.15
-  wallHeight: 2
-  visitTrigger: {fileID: 1800956135430489309}
+  wallWidth: 0.2
+  wallHeight: 5
+  ph: {fileID: 0}
 --- !u!65 &1800956135430489309
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -123,5 +123,5 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 12.050712, z: 1}
+  m_Size: {x: 0.8, y: 12.050712, z: 0.8}
   m_Center: {x: 0, y: 6.75339, z: 0}

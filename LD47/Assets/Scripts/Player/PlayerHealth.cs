@@ -15,6 +15,16 @@ public class PlayerHealth : Health
         }
     }
 
+    private void OnEnable()
+    {
+        healthBar.gameObject.SetActive(true);
+    }
+
+    private void OnDisable()
+    {
+        healthBar.gameObject.SetActive(false);
+    }
+
     public override void Die()
     {
         OnPlayerDeath?.Invoke();
@@ -24,6 +34,5 @@ public class PlayerHealth : Health
         transform.rotation = Quaternion.Euler(Vector3.zero);
         currentHealth = maxHealth;
         UpdateHealthbar();
-
     }
 }

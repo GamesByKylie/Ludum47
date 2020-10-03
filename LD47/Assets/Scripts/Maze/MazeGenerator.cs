@@ -7,6 +7,8 @@ public class MazeGenerator : MonoBehaviour
     public Vector2 initialPosition;
     public Transform mazeParent;
 
+    public Transform minotaurArena;
+
     [Header("Size")]
     public int sections;
     public Vector2Int dimensions;
@@ -26,6 +28,12 @@ public class MazeGenerator : MonoBehaviour
             startPos = CreateMazePaths(maze);
             startPos += Vector2.down * cellDimensions;
 
+            //Don't want the player to be able to escape the maze
+            if (i == 0)
+            {
+                maze[0, 0].AddWall(Cell.Wall.Front);
+            }
+
             Cell c = Instantiate(checkpoint);
             c.ph = GetComponent<GameController>().ph;
             c.Create(cellDimensions);
@@ -35,7 +43,14 @@ public class MazeGenerator : MonoBehaviour
             c.transform.position = new Vector3(startPos.x, 0f, startPos.y);
             startPos += Vector2.down * cellDimensions;
         }
-        
+
+        //Go back to the position of the last checkpoint
+        startPos -= Vector2.down * cellDimensions;
+
+        Transform arena = Instantiate(minotaurArena);
+        float posX = arena.localScale.x / 2 - (cellDimensions / 2);
+        float posZ = arena.localScale.z / 2 + (cellDimensions / 2);
+        arena.position = new Vector3(startPos.x + posX, 0f, startPos.y - posZ);
     }
 
 
