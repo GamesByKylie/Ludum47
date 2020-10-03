@@ -4,37 +4,40 @@ using UnityEngine;
 
 public class Attack : MonoBehaviour
 {
-    public float unarmedDamage;
-    public float unarmedDistance;
-    //weapon goes here
+    public Weapon unarmed;
+    public Weapon weapon;
 
     public Health target;
 
-    protected bool usingWeapon = false;
+    protected Weapon currentWeapon;
     protected Animator anim;
+    protected float timer;
 
     private void OnValidate()
     {
         anim = GetComponentInChildren<Animator>();
     }
 
+    private void Start()
+    {
+        currentWeapon = unarmed;
+    }
+
     public virtual void DoDamage(Health h)
     {
-        h.TakeDamage(unarmedDamage);
+        h.TakeDamage(currentWeapon.damage);
     }
 
     public virtual void PerformAttack()
     {
-        Debug.Log($"{gameObject.name} is attacking something!");
-        //anim.SetTrigger("Attack");
-        if (Vector3.Distance(transform.position, target.transform.position) <= unarmedDistance)
+        if (Vector3.Distance(transform.position, target.transform.position) <= currentWeapon.range)
         {
-            target.TakeDamage(unarmedDamage);
+            target.TakeDamage(currentWeapon.damage);
         }
     }
 
-    public virtual void SwitchToWeapon()
+    public virtual void SwitchWeapon(Weapon w)
     {
-        usingWeapon = true;
+        currentWeapon = w;
     }
 }

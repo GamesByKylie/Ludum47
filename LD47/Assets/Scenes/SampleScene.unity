@@ -451,6 +451,7 @@ GameObject:
   - component: {fileID: 846078046}
   - component: {fileID: 846078049}
   - component: {fileID: 846078050}
+  - component: {fileID: 846078051}
   m_Layer: 0
   m_Name: Minotaur
   m_TagString: Untagged
@@ -548,11 +549,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59b2aef5f84cda84a865bc111dd3d1c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  unarmedDamage: 10
-  unarmedDistance: 2
+  unarmed: {fileID: 846078051}
+  weapon: {fileID: 0}
   target: {fileID: 1361820338}
   range: 2
-  cooldown: 6
+--- !u!114 &846078051
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 846078044}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b573c6964e0d1f46b7f1581b32dbf32, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weaponName: minotaur unarmed
+  damage: 25
+  range: 2
+  cooldown: 14
 --- !u!1 &946784059
 GameObject:
   m_ObjectHideFlags: 0
@@ -747,6 +763,7 @@ GameObject:
   - component: {fileID: 1361820338}
   - component: {fileID: 1361820343}
   - component: {fileID: 1361820344}
+  - component: {fileID: 1361820345}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -841,8 +858,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3269f81498209c64582a69df012fd8d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  unarmedDamage: 50
-  unarmedDistance: 2
+  unarmed: {fileID: 1361820345}
+  weapon: {fileID: 0}
   target: {fileID: 846078046}
 --- !u!95 &1361820344
 Animator:
@@ -863,6 +880,22 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &1361820345
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1361820337}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b573c6964e0d1f46b7f1581b32dbf32, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weaponName: player unarmed
+  damage: 10
+  range: 1
+  cooldown: 5
 --- !u!1 &1418892570
 GameObject:
   m_ObjectHideFlags: 0
