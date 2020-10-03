@@ -18,7 +18,7 @@ public class Attack : MonoBehaviour
         anim = GetComponentInChildren<Animator>();
     }
 
-    private void Start()
+    private void Awake()
     {
         currentWeapon = unarmed;
     }
@@ -39,6 +39,13 @@ public class Attack : MonoBehaviour
 
     public virtual void SwitchWeapon(Weapon w)
     {
+        w.gameObject.SetActive(true);
+
+        //Unarmed is on the base game object, so we don't want to disable that
+        if (!currentWeapon.Equals(unarmed))
+        {
+            currentWeapon.gameObject.SetActive(false);
+        }
         currentWeapon = w;
     }
 }

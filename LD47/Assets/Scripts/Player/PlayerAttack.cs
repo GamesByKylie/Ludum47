@@ -4,6 +4,12 @@ using UnityEngine;
 
 public class PlayerAttack : Attack
 {
+
+    private void Start()
+    {
+        weapon.gameObject.SetActive(false);
+    }
+
     private void Update()
     {
         timer += Time.fixedDeltaTime;
@@ -14,5 +20,7 @@ public class PlayerAttack : Attack
             anim.SetTrigger("Attack");
             timer = 0.0f;
         }
+
+
     }
 }
