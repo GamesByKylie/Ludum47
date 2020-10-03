@@ -11,10 +11,10 @@ public class Cell : MonoBehaviour
     public float wallHeight;
 
     private Transform[] walls = new Transform[4];
+    private bool visited = false;
 
     public void Create(Vector2 size)
     {
-        Debug.Log($"Floor size is {size.x} x {size.y}");
         transform.localScale = new Vector3(size.x, transform.localScale.y, size.y);
 
         //Walls
@@ -52,30 +52,30 @@ public class Cell : MonoBehaviour
         Create(new Vector2(size, size));
     }
     
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            Create(Random.Range(1f, 7f));
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha1))
-        {
-            RemoveWall(Wall.Front);
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha2))
-        {
-            RemoveWall(Wall.Right);
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha3))
-        {
-            RemoveWall(Wall.Back);
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha4))
-        {
-            RemoveWall(Wall.Left);
-        }
+    //private void Update()
+    //{
+    //    if (Input.GetKeyDown(KeyCode.Space))
+    //    {
+    //        Create(Random.Range(1f, 7f));
+    //    }
+    //    if (Input.GetKeyDown(KeyCode.Alpha1))
+    //    {
+    //        RemoveWall(Wall.Front);
+    //    }
+    //    if (Input.GetKeyDown(KeyCode.Alpha2))
+    //    {
+    //        RemoveWall(Wall.Right);
+    //    }
+    //    if (Input.GetKeyDown(KeyCode.Alpha3))
+    //    {
+    //        RemoveWall(Wall.Back);
+    //    }
+    //    if (Input.GetKeyDown(KeyCode.Alpha4))
+    //    {
+    //        RemoveWall(Wall.Left);
+    //    }
 
-    }
+    //}
 
     /// <summary>
     /// Removes the given wall from the cell
@@ -87,5 +87,10 @@ public class Cell : MonoBehaviour
         {
             Destroy(walls[(int)i].gameObject);
         }
+    }
+
+    public bool Visited
+    {
+        get; set;
     }
 }
