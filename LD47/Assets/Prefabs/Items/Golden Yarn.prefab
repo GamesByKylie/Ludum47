@@ -106,4 +106,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8ddd20495672934ba49b53ea342a9cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name: golden yarn
+  itemName: golden yarn

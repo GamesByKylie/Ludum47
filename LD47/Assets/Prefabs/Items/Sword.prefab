@@ -107,7 +107,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8ddd20495672934ba49b53ea342a9cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name: sword
+  itemName: sword
 --- !u!114 &7354549371042204477
 MonoBehaviour:
   m_ObjectHideFlags: 0

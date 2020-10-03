@@ -19,9 +19,16 @@ public class PlayerMovement : MonoBehaviour
 
     private void Start()
     {
-        //Cursor.lockState = CursorLockMode.Locked;
-        //Cursor.visible = false;
+        if (rb == null)
+        {
+            rb = GetComponent<Rigidbody>();
+        }
+        if (cam == null)
+        {
+            cam = GetComponentInChildren<Camera>();
+        }
     }
+
 
     private void FixedUpdate()
     {

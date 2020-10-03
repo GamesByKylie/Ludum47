@@ -20,16 +20,16 @@ public class PlayerItems : MonoBehaviour
         if (other.CompareTag("Collectible"))
         {
             Item i = other.GetComponent<Item>();
-            if (i.name == goldenYarn.name)
+            if (i.itemName == goldenYarn.itemName)
             {
                 Debug.Log("You just picked up the golden yarn");
             }
-            else if (i.name == sword.name)
+            else if (i.itemName == sword.itemName)
             {
                 Debug.Log("You just picked up the sword!");
                 GetComponent<PlayerAttack>().SwitchWeapon(GetComponent<PlayerAttack>().weapon);
             }
-            else if (i.name == crown.name)
+            else if (i.itemName == crown.itemName)
             {
                 Debug.Log("You just picked up the crown!");
                 wornCrown.SetActive(true);
