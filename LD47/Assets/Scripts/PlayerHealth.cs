@@ -37,6 +37,7 @@ public class PlayerHealth : MonoBehaviour
         Debug.Log("Player is dead, respawning...");
         //Reset position
         transform.position = Vector3.zero;
+        transform.rotation = Quaternion.Euler(Vector3.zero);
 
         //Reset maze timer
 
