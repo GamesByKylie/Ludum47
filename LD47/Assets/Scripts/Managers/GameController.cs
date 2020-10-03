@@ -7,8 +7,11 @@ public class GameController : MonoBehaviour
 {
     public PlayerHealth ph;
     public StartMaze sm;
+    public StartBoss sb;
     public float timeLimit = 2f;
     public Slider timeIndicator;
+    public GameObject minotaur;
+    public Transform minotaurSpawnPoint;
 
     [Header("Items")]
     public Item crown;
@@ -22,6 +25,9 @@ public class GameController : MonoBehaviour
 
     private float timer;
     private bool timing = false;
+
+    private bool sbInitialized = false;
+    private GameObject minotaurObj;
 
     void Start()
     {
@@ -67,6 +73,11 @@ public class GameController : MonoBehaviour
         timer = timeLimit;
 
         timeIndicator.gameObject.SetActive(false);
+
+        if (minotaurObj != null)
+        {
+            Destroy(minotaurObj);
+        }
     }
 
     private void Controller_OnMazeStart()
@@ -78,8 +89,25 @@ public class GameController : MonoBehaviour
         timing = true;
     }
 
+    private void Controller_OnPlayerEnterBossRoom()
+    {
+        timing = false;
+        timeIndicator.gameObject.SetActive(false);
+        minotaurObj = Instantiate(minotaur, minotaurSpawnPoint.position, minotaurSpawnPoint.rotation);
+        minotaurObj.GetComponent<EnemyMovement>().target = ph.transform;
+        minotaurObj.GetComponent<EnemyAttack>().target = ph;
+
+        ph.GetComponent<PlayerAttack>().target = minotaurObj.GetComponent<EnemyHealth>();
+    }
+
     private void FixedUpdate()
     {
+        if (!sbInitialized && sb != null)
+        {
+            sb.OnPlayerEnterBossRoom += Controller_OnPlayerEnterBossRoom;
+            sbInitialized = true;
+        }
+
         if (timing)
         {
             timer -= Time.fixedDeltaTime;

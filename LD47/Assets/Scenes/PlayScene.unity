@@ -748,8 +748,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ph: {fileID: 1361820338}
   sm: {fileID: 1620473573}
+  sb: {fileID: 0}
   timeLimit: 180
   timeIndicator: {fileID: 639419957}
+  minotaur: {fileID: 7656564641590677222, guid: c7359263d04053f4e84eb4277e55090c,
+    type: 3}
+  minotaurSpawnPoint: {fileID: 0}
   crown: {fileID: 3043523717374084537, guid: fe81f0bc507d55546b933c4fd68f384a, type: 3}
   goldenThreadPickup: {fileID: 5566937103740942475, guid: deb8c102666312a43bdc02b63183885a,
     type: 3}
@@ -786,8 +790,8 @@ MonoBehaviour:
   mazeParent: {fileID: 1247851043}
   minotaurArena: {fileID: 6646006723767779404, guid: d51d3f1881536544baeab967b2b0afae,
     type: 3}
-  sections: 5
-  dimensions: {x: 12, y: 12}
+  sections: 1
+  dimensions: {x: 4, y: 4}
   cellDimensions: 1.5
   cell: {fileID: 9084794730475928378, guid: e3ff5af7bfb70c64896446cae4677291, type: 3}
   checkpoint: {fileID: 70297960356440293, guid: 3cf52ae10ea8b414c8c43f6f91603918,
@@ -826,7 +830,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 10.009979}
+  m_AnchoredPosition: {x: 0, y: 10.01001}
   m_SizeDelta: {x: 0, y: 80.769745}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1068406636

@@ -15,12 +15,16 @@ public class Attack : MonoBehaviour
 
     private void OnValidate()
     {
-        anim = GetComponentInChildren<Animator>();
+        anim = GetComponent<Animator>();
     }
 
     private void Awake()
     {
         currentWeapon = unarmed;
+        if (anim == null)
+        {
+            anim = GetComponent<Animator>();
+        }
     }
 
     public virtual void DoDamage(Health h)
