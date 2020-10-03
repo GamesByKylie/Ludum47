@@ -93,7 +93,6 @@ public class MazeGenerator : MonoBehaviour
         Cell exitCell = m[m.GetLength(0) - 1, i];
         exitCell.RemoveWall(Cell.Wall.Back);
         exitPos = new Vector2(exitCell.transform.position.x, exitCell.transform.position.z);
-        Debug.Log($"Exit position of the maze at cell {m.GetLength(0) - 1}, {i}: {exitPos.x}, {exitPos.y}");
 
         return exitPos;
     }

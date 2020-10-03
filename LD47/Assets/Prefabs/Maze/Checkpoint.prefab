@@ -12,6 +12,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Checkpoint
       objectReference: {fileID: 0}
+    - target: {fileID: 9084794730475928379, guid: e3ff5af7bfb70c64896446cae4677291,
+        type: 3}
+      propertyPath: m_TagString
+      value: Checkpoint
+      objectReference: {fileID: 0}
     - target: {fileID: 9084794730475928380, guid: e3ff5af7bfb70c64896446cae4677291,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
