@@ -1,0 +1,120 @@
+title: Start
+tags: 
+colorID: 0
+position: 1328,1583
+---
+<< name DialogCanvas Theseus >>
+I did not expect to see such a fair maiden when I was sent to my death here at Knossos! I am Theseus, prince of Athens. Pray tell, who are you?
+
+<< name DialogCanvas Ariadne >>
+I am Ariadne, daughter of Minos and Pasiphae, princess of Crete. This palace of Knossos is my home. I have seen many men like you sent into the Labyrinth but have seen none return. I have no interest in getting close to a doomed man.
+
+<< name DialogCanvas Theseus >> 
+[[ But you have not seen me! I am far stronger than any previous victim! |wrong]]
+[[ If you have no interest in me, then I have nothing else to say to you. |wrong]]
+[[ If I had someone to help me, I would have a better chance of returning. |conversation_2]]
+[[ If I am doomed, then this is your only chance to have me! |wrong]]
+===
+title: conversation_2
+tags: 
+colorID: 0
+position: 1313,1873
+---
+<< name DialogCanvas Ariadne >>
+I... suppose I could help. I would like to see this terrible business ended once and for all. Here, take this golden thread. If you unspool it behind you, you will be able to trace your path through the Labyrinth.
+
+<< earnthread DialogCanvas >>
+
+<< name DialogCanvas Theseus >>
+[[ Do you have anything else for me? |wrong]]
+[[ What exactly do you mean by "this terrible business"? |conversation_3]]
+[[ What beautiful thread - almost as beautiful as you! |wrong]]
+[[ Why haven't you tried to stop it before? So many have died! |wrong]]
+===
+title: wrong
+tags: 
+colorID: 0
+position: 2287,2262
+---
+<< name DialogCanvas Ariadne >>
+How rude! There have been some victims I have mourned. You will not be one of them. Farewell.
+===
+title: conversation_3
+tags: 
+colorID: 0
+position: 1297,2125
+---
+<< name DialogCanvas Ariadne >>
+Oh, of course, you would only have heard rumors. The Labyrinth you will be sent into was constructed by the master craftsman Daedalus to house the man-eating half-bull, half-man Minotaur.
+My elder brother Androgeus died in Athens, and as revenge my father has demanded seven men every seven years to feed to the Minotaur.
+
+<< name DialogCanvas Theseus >>
+[[ What a horrible way to die! Your father is unforgiveable. |wrong]]
+[[ I am far stronger than any of the others! I will certainly slay the beast! |wrong]]
+[[ Androgeus' death is a tragedy, to be sure, but this revenge is far worse. |wrong]]
+[[ Where did the beast come from? Maybe if I knew more... |conversation_4]]
+===
+title: conversation_4
+tags: 
+colorID: 0
+position: 1285,2395
+---
+<< name DialogCanvas Ariadne >>
+He is... my half brother. My father refused to sacrifice a bull to Poseidon, which angered the god. He cursed my mother to fall in love with the bull, and the Minotaur was born from that.
+At first it seemed fine, but he grew so quickly and became too violent. Once he started hurting people, trying to eat them, Father had the Labyrinth constructed.
+
+<< name DialogCanvas Theseus >>
+[[ You must be conflicted, then. He's still your brother. |conversation_5]]
+[[ He should have had the monster killed instead of feeding it! |wrong]]
+[[ It seems your family is terribly cursed. You should consult an oracle. |wrong]]
+[[ What a tragedy. Tell me more about the Labyrinth. |wrong]]
+===
+title: conversation_5
+tags: 
+colorID: 0
+position: 1281,2684
+---
+<< name DialogCanvas Ariadne >>
+I am. It is true that he has killed many people, and he certainly is not human, but we still share blood. And he is down there all alone in the Labyrinth. I have not seen past the entrance, but there are no torches. It is completely black, and so cold. I would not wish that on anyone.
+Oh! You will not be able to find your way around very well. You have been kind to me. I will hide my crown for you just inside the Labyrinth. It glows, so you will at least have more light than the meager candle they give you.
+
+<< earncrown DialogCanvas >> 
+
+<< name DialogCanvas Theseus >>
+[[ Another gift! Now all I need is a weapon! |wrong]]
+[[ Somewhere dark and cold is perfect for a monster. |wrong]]
+[[ I do not fear the dark! Thank you for the gift anyway. |wrong]]
+[[ You are suffering too. I will do my best for your sake. |conversation_6]]
+===
+title: conversation_6
+tags: 
+colorID: 0
+position: 1282,2954
+---
+<< name DialogCanvas Ariadne >>
+We are all suffering. It may not seem like it, but Father is in pain too. I was so young when it all happened, but I remember him being much different. Less cruel. And yet now he is sending so many men to their deaths.
+It has destroyed Mother, of course. Having a child she birthed turn into a monster and being locked away... And I am sure the Minotaur is miserable as well. If only this would all just end...
+
+<< name DialogCanvas Theseus >>
+[[ I will do my best to slay the vile creature, I swear it. |wrong]]
+[[ I promise you, I will free your family. |conversation_7]]
+[[ I will be victorious for you, my beautiful! |wrong]]
+[[ I have the strength of Athena. The Minotaur is no match for me! |wrong]]
+===
+title: conversation_7
+tags: 
+colorID: 0
+position: 1292,3267
+---
+<< name DialogCanvas Ariadne >>
+Truly? Somehow I believe you have the strength to do it. And if you act not out of anger or vengeance for your people but out of compassion for mine...
+I trust you. Release us - all of us, Crete and Athens too - from this curse. I will leave you a bronze sword along with the crown. Please, make use of it.
+
+<< earnedsword DialogCanvas >> 
+
+<< name DialogCanvas Theseus >>
+I will not fail you or your people. On my honor as a prince of Athens, I will repay these favors you have given me. Wait for me to return with the good news of victory!
+
+<< name DialogCanvas Ariadne >>
+Good luck, and may the gods be by your side!
+===

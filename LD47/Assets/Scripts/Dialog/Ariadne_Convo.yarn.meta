@@ -1,0 +1,57 @@
+fileFormatVersion: 2
+guid: 0b71fa5052a383540a45c6b91d0e5885
+ScriptedImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 2
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+  script: {fileID: 11500000, guid: 94073015eacc34c1d8fc6786e43d60ca, type: 3}
+  baseLanguageID: 
+  stringIDs:
+  - Ariadne_Convo-Start-0
+  - Ariadne_Convo-Start-1
+  - Ariadne_Convo-Start-2
+  - Ariadne_Convo-Start-3
+  - Ariadne_Convo-Start-4
+  - Ariadne_Convo-Start-5
+  - Ariadne_Convo-conversation_2-6
+  - Ariadne_Convo-conversation_2-7
+  - Ariadne_Convo-conversation_2-8
+  - Ariadne_Convo-conversation_2-9
+  - Ariadne_Convo-conversation_2-10
+  - Ariadne_Convo-wrong-11
+  - Ariadne_Convo-conversation_3-12
+  - Ariadne_Convo-conversation_3-13
+  - Ariadne_Convo-conversation_3-14
+  - Ariadne_Convo-conversation_3-15
+  - Ariadne_Convo-conversation_3-16
+  - Ariadne_Convo-conversation_3-17
+  - Ariadne_Convo-conversation_4-18
+  - Ariadne_Convo-conversation_4-19
+  - Ariadne_Convo-conversation_4-20
+  - Ariadne_Convo-conversation_4-21
+  - Ariadne_Convo-conversation_4-22
+  - Ariadne_Convo-conversation_4-23
+  - Ariadne_Convo-conversation_5-24
+  - Ariadne_Convo-conversation_5-25
+  - Ariadne_Convo-conversation_5-26
+  - Ariadne_Convo-conversation_5-27
+  - Ariadne_Convo-conversation_5-28
+  - Ariadne_Convo-conversation_5-29
+  - Ariadne_Convo-conversation_6-30
+  - Ariadne_Convo-conversation_6-31
+  - Ariadne_Convo-conversation_6-32
+  - Ariadne_Convo-conversation_6-33
+  - Ariadne_Convo-conversation_6-34
+  - Ariadne_Convo-conversation_6-35
+  - Ariadne_Convo-conversation_7-36
+  - Ariadne_Convo-conversation_7-37
+  - Ariadne_Convo-conversation_7-38
+  - Ariadne_Convo-conversation_7-39
+  compilationStatus: 1
+  isSuccesfullyCompiled: 1
+  compilationErrorMessage: 
+  baseLanguage: {instanceID: 0}
+  localizations: []
