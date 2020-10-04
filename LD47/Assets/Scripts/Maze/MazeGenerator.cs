@@ -42,8 +42,10 @@ public class MazeGenerator : MonoBehaviour
         startPos -= Vector2.down * cellDimensions;
 
         Transform arena = Instantiate(minotaurArena);
-        float posX = arena.localScale.x / 2 - (cellDimensions / 2);
-        float posZ = arena.localScale.z / 2 + (cellDimensions / 2);
+        //float posX = arena.localScale.x / 2 - (cellDimensions / 2);
+        float posX = arena.GetChild(0).localScale.x / 2 - (cellDimensions / 2);
+        //float posZ = arena.localScale.z / 2 + (cellDimensions / 2);
+        float posZ = arena.GetChild(0).localScale.x / 2 + (cellDimensions / 2);
         arena.position = new Vector3(startPos.x + posX, 0f, startPos.y - posZ);
     }
 

@@ -101,11 +101,13 @@ public class GameController : MonoBehaviour
 
         if (EarnedCrown)
         {
+            Debug.Log("Spawning crown");
             crownObj = SpawnItem(crown, crownSpawn);
         }
         
         if (EarnedSword)
         {
+            Debug.Log("Spawning sword");
             swordObj = SpawnItem(sword, swordSpawn);
         }
     }

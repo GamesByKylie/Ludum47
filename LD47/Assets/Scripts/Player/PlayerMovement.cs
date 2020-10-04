@@ -23,12 +23,18 @@ public class PlayerMovement : MonoBehaviour
     public float rotSpeed;
     public Vector2 rotLimits;
 
+    [Header("Dash")]
+    public float dashSpeed;
+    public float dashCooldown;
+
     private Rigidbody rb;
     private PlayerHealth ph;
     private PlayerAttack pa;
     private Camera cam;
 
     private bool allowMovement = true;
+    private float dashTimer;
+    private bool dashing = false;
 
     private void OnValidate()
     {
@@ -54,6 +60,35 @@ public class PlayerMovement : MonoBehaviour
 
         ph.enabled = false;
         pa.enabled = false;
+
+        dashTimer = dashCooldown;
+    }
+
+    private void Update()
+    {
+        if (allowMovement)
+        {
+            dashTimer += Time.fixedDeltaTime;
+
+            if ((Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0) && dashTimer >= dashCooldown && Input.GetKeyDown(KeyCode.LeftShift))
+            {
+                Vector3 targetPosition = transform.position + (transform.forward * dashSpeed);
+
+                //Theoretically, this will go to where you'll land, point back towards where you are now, and won't let you dash if there's anything in your way
+                //SHOULD prevent you from going through walls?
+                RaycastHit hit;
+                if (Physics.Raycast(transform.position, transform.forward, out hit, dashSpeed))
+                {
+                    Debug.Log($"Raycast blocked by {hit.collider.name}");
+                }
+                else
+                {
+                    Debug.Log("Path is clear to dash through");
+                    dashing = true;
+                    rb.MovePosition(targetPosition);
+                }
+            }
+        }
     }
 
 
@@ -61,37 +96,46 @@ public class PlayerMovement : MonoBehaviour
     {
         if (allowMovement)
         {
-            float horiz = Input.GetAxis("Horizontal");
-            float vert = Input.GetAxis("Vertical");
-
-            Vector3 fwd = transform.forward * vert;
-            Vector3 side = transform.right * horiz;
-
-            Vector3 movement = Vector3.Normalize(fwd + side) * speed * Time.fixedDeltaTime;
-
-            rb.MovePosition(transform.position + movement);
-
-            float lookHoriz = Input.GetAxis("Mouse X");
-            float lookVert = Input.GetAxis("Mouse Y");
-
-            Vector3 rotation = new Vector3(0f, lookHoriz, 0f) * rotSpeed;
-
-            transform.localEulerAngles += rotation;
-        
-            cam.transform.localEulerAngles += new Vector3(lookVert, 0f, 0f) * rotSpeed;
-            float eulerX = cam.transform.localEulerAngles.x;
-
-            if (eulerX < 360 && eulerX > 180)
+            if (!dashing)
             {
-                eulerX = Mathf.Clamp(eulerX, rotLimits.x + 360, 360);
+                //Movement
+                float horiz = Input.GetAxis("Horizontal");
+                float vert = Input.GetAxis("Vertical");
+
+                Vector3 fwd = transform.forward * vert;
+                Vector3 side = transform.right * horiz;
+
+                Vector3 movement = Vector3.Normalize(fwd + side) * speed * Time.fixedDeltaTime;
+
+                rb.MovePosition(transform.position + movement);
             }
             else
             {
-                eulerX = Mathf.Clamp(eulerX, 0, rotLimits.y);
+                dashing = false;
             }
-
-            cam.transform.localEulerAngles = new Vector3(eulerX, 0f, 0f);
         }
+
+        //Rotation
+        float lookHoriz = Input.GetAxis("Mouse X");
+        float lookVert = Input.GetAxis("Mouse Y");
+
+        Vector3 rotation = new Vector3(0f, lookHoriz, 0f) * rotSpeed;
+
+        transform.localEulerAngles += rotation;
+        
+        cam.transform.localEulerAngles += new Vector3(lookVert, 0f, 0f) * rotSpeed;
+        float eulerX = cam.transform.localEulerAngles.x;
+
+        if (eulerX < 360 && eulerX > 180)
+        {
+            eulerX = Mathf.Clamp(eulerX, rotLimits.x + 360, 360);
+        }
+        else
+        {
+            eulerX = Mathf.Clamp(eulerX, 0, rotLimits.y);
+        }
+
+        cam.transform.localEulerAngles = new Vector3(eulerX, 0f, 0f);
         
     }
 

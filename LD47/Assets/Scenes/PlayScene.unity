@@ -1466,8 +1466,8 @@ MonoBehaviour:
   mazeParent: {fileID: 1247851043}
   minotaurArena: {fileID: 6646006723767779404, guid: d51d3f1881536544baeab967b2b0afae,
     type: 3}
-  sections: 5
-  dimensions: {x: 12, y: 12}
+  sections: 1
+  dimensions: {x: 4, y: 4}
   cellDimensions: 1.5
   cell: {fileID: 9084794730475928378, guid: e3ff5af7bfb70c64896446cae4677291, type: 3}
   checkpoint: {fileID: 70297960356440293, guid: 3cf52ae10ea8b414c8c43f6f91603918,
@@ -3542,7 +3542,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   yarnScripts:
-  - {fileID: 2480198943629176163, guid: 4c2235d2c4432ec4ba572438cc185d7b, type: 3}
+  - {fileID: 2480198943629176163, guid: 0b71fa5052a383540a45c6b91d0e5885, type: 3}
   textLanguage: 
   variableStorage: {fileID: 2060757692}
   dialogueUI: {fileID: 2060757691}
@@ -4030,6 +4030,21 @@ PrefabInstance:
       propertyPath: playerMazeSpawn
       value: 
       objectReference: {fileID: 278103193}
+    - target: {fileID: 7086932996543602645, guid: 20f5949abbc4b6b4cb8d2ec8c458f781,
+        type: 3}
+      propertyPath: dashSpeed
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7086932996543602645, guid: 20f5949abbc4b6b4cb8d2ec8c458f781,
+        type: 3}
+      propertyPath: dashCooldown
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7086932996543602645, guid: 20f5949abbc4b6b4cb8d2ec8c458f781,
+        type: 3}
+      propertyPath: dashDuration
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7086932996543602647, guid: 20f5949abbc4b6b4cb8d2ec8c458f781,
         type: 3}
       propertyPath: m_Name
@@ -4040,7 +4055,8 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 575250745777437922, guid: 20f5949abbc4b6b4cb8d2ec8c458f781, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 20f5949abbc4b6b4cb8d2ec8c458f781, type: 3}
 --- !u!114 &7086932997329544551 stripped
 MonoBehaviour:

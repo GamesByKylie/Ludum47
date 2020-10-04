@@ -464,7 +464,7 @@ Animator:
   m_GameObject: {fileID: 7656564641590677222}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 26ad1032e8a4127449099cc60567a4ef, type: 3}
-  m_Controller: {fileID: 9100000, guid: 89bb554d79aa99745aa5eab5d3f79e41, type: 2}
+  m_Controller: {fileID: 9100000, guid: 59531d7906ae86f4aa6dcc60ffb22a82, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -504,7 +504,7 @@ MonoBehaviour:
   weaponName: minotaur unarmed
   damage: 25
   range: 3
-  cooldown: 20
+  cooldown: 10
 --- !u!114 &7656564641590677214
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -517,7 +517,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9fef353ad43309140bb1f9ea7fbf4ffa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0.25
+  speed: 1
   target: {fileID: 0}
   minDistance: 2
 --- !u!1001 &7656564641289846938
@@ -577,15 +577,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 435260, guid: 54dd8ae60378d5143b14a2e5e6a8da1e, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.027315183
+      value: 0.041311484
       objectReference: {fileID: 0}
     - target: {fileID: 435260, guid: 54dd8ae60378d5143b14a2e5e6a8da1e, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.027315183
+      value: 0.041311484
       objectReference: {fileID: 0}
     - target: {fileID: 435260, guid: 54dd8ae60378d5143b14a2e5e6a8da1e, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.027315183
+      value: 0.041311484
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 9535388, guid: 54dd8ae60378d5143b14a2e5e6a8da1e, type: 3}

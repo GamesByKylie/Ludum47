@@ -364,6 +364,15 @@ namespace Yarn.Unity {
 
                 var unityText = optionButtons [i].GetComponentInChildren<Text> ();
                 if (unityText != null) {
+                    if (optionText[0] == '#')
+                    {
+                        unityText.fontStyle = FontStyle.Bold;
+                        optionText = optionText.Substring(1);
+                    }
+                    else
+                    {
+                        unityText.fontStyle = FontStyle.Normal;
+                    }
                     unityText.text = optionText;
                 }
 

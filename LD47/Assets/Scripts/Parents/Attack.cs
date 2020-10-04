@@ -12,6 +12,7 @@ public class Attack : MonoBehaviour
     protected Weapon currentWeapon;
     protected Animator anim;
     protected float timer;
+    protected bool timing = true;
 
     private void OnValidate()
     {
@@ -25,6 +26,9 @@ public class Attack : MonoBehaviour
         {
             anim = GetComponent<Animator>();
         }
+
+        //so they can attack right away if they want to
+        timer = currentWeapon.cooldown;
     }
 
     public virtual void DoDamage(Health h)
@@ -50,5 +54,15 @@ public class Attack : MonoBehaviour
             currentWeapon.gameObject.SetActive(false);
         }
         currentWeapon = w;
+    }
+
+    public void PauseTiming()
+    {
+        timing = false;
+    }
+
+    public void StartTiming()
+    {
+        timing = true;
     }
 }

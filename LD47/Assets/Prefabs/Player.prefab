@@ -759,7 +759,7 @@ MonoBehaviour:
   weaponName: player unarmed
   damage: 10
   range: 2
-  cooldown: 3
+  cooldown: 1.5
 --- !u!114 &7086932996543602652
 MonoBehaviour:
   m_ObjectHideFlags: 0
