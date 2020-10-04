@@ -28,19 +28,13 @@ public class MazeGenerator : MonoBehaviour
             startPos = CreateMazePaths(maze);
             startPos += Vector2.down * cellDimensions;
 
-            //Don't want the player to be able to escape the maze
-            if (i == 0)
-            {
-                maze[0, 0].AddWall(Cell.Wall.Front);
-            }
-
             Cell c = Instantiate(checkpoint);
             c.ph = GetComponent<GameController>().ph;
             c.Create(cellDimensions);
             c.transform.SetParent(mazeParent);
             c.RemoveWall(Cell.Wall.Front);
             c.RemoveWall(Cell.Wall.Back);
-            c.transform.position = new Vector3(startPos.x, 0f, startPos.y);
+            c.transform.position = new Vector3(startPos.x, -c.transform.localScale.y / 2, startPos.y);
             startPos += Vector2.down * cellDimensions;
         }
 
@@ -69,7 +63,7 @@ public class MazeGenerator : MonoBehaviour
                 box.transform.SetParent(parent);
                 mazeGrid[r, c] = box;
                 box.Create(cellDimensions);
-                box.transform.position = new Vector3(startX, 0f, startY);
+                box.transform.position = new Vector3(startX, -box.transform.localScale.y / 2, startY);
                 box.name = $"Maze Cell {r}, {c}";
                 startX += cellDimensions;
             }

@@ -34,17 +34,20 @@ public class GoldenThread : MonoBehaviour
 
         if (allowPath)
         {
-            if (rend.positionCount > 1)
-            {
-                Vector3 v = rend.GetPosition(rend.positionCount - 2);
-            }
-
             if (rend.positionCount > 1 && Vector3XZEquals(rend.GetPosition(rend.positionCount - 2), pos.position))
             {
                 rend.positionCount--;
             }
             else
             {
+                Vector3[] allPoints = new Vector3[rend.positionCount];
+                rend.GetPositions(allPoints);
+                if (rend.positionCount > 0 && Array.Find(allPoints, x => Vector3XZEquals(x, pos.position)) != Vector3.zero)
+                {
+                    Debug.Log("Found a repeat, did not add");
+                    return;
+                }
+
                 rend.positionCount++;
                 rend.SetPosition(rend.positionCount - 1, pos.position + (Vector3.up * height));
             }

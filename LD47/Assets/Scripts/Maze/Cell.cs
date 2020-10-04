@@ -14,6 +14,8 @@ public class Cell : MonoBehaviour
 
     private readonly Transform[] walls = new Transform[4];
 
+    [HideInInspector] public bool triggered = false;
+
     public void Create(Vector2 size)
     {
         if (tag == "Checkpoint")
@@ -112,5 +114,21 @@ public class Cell : MonoBehaviour
     public bool Visited
     {
         get; set;
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            triggered = true;
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            triggered = false;
+        }
     }
 }

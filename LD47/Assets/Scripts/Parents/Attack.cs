@@ -34,7 +34,6 @@ public class Attack : MonoBehaviour
 
     public virtual void PerformAttack()
     {
-        Debug.Log("Performing Attack");
         if (target != null && Vector3.Distance(transform.position, target.transform.position) <= currentWeapon.range)
         {
             target.TakeDamage(currentWeapon.damage);

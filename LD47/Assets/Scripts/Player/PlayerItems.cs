@@ -24,7 +24,7 @@ public class PlayerItems : MonoBehaviour
     {
         if (other.CompareTag("Collectible"))
         {
-            Item i = other.GetComponent<Item>();
+            Item i = other.GetComponentInParent<Item>();
             if (i.itemName == goldenYarn.itemName)
             {
                 Debug.Log("You just picked up the golden yarn");
@@ -45,7 +45,7 @@ public class PlayerItems : MonoBehaviour
                 Debug.Log("Unknown item");
             }
 
-            Destroy(other.gameObject);
+            Destroy(i.gameObject);
         }
     }
 
