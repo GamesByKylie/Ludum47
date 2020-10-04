@@ -1,0 +1,40 @@
+title: Start
+tags: 
+colorID: 0
+position: 1259,1972
+---
+<< name DialogCanvas Theseus >>
+Hey, isn't it like super messed up that your dad keeps feeding people to your mom's illegitimate son by a literal bull?
+
+<< name DialogCanvas Ariadne >>
+I mean, yeah. This whole thing is wack.
+
+<< name DialogCanvas Theseus >>
+[[ This is the wrong answer |wrong]]
+[[ This is also wrong |wrong]]
+[[ This is the right answer |conversation_2]]
+[[ This is still wrong! |wrong]]
+[[ Also wrong still |wrong]]
+===
+title: conversation_2
+tags: 
+colorID: 0
+position: 1178,2266
+---
+<< name DialogCanvas Ariadne >>
+You know you're pretty hot and also a prince, let me help you out here.
+
+<< name DialogCanvas Theseus >>
+Rad!
+===
+title: wrong
+tags: 
+colorID: 0
+position: 1466,2269
+---
+<< name DialogCanvas Ariadne >>
+You're super rude and I hope my weird half-brother eats you.
+
+<< name DialogCanvas Theseus >>
+Well this sucks.
+===

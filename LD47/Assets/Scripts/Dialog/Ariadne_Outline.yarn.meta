@@ -1,0 +1,28 @@
+fileFormatVersion: 2
+guid: 4c2235d2c4432ec4ba572438cc185d7b
+ScriptedImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 2
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+  script: {fileID: 11500000, guid: 94073015eacc34c1d8fc6786e43d60ca, type: 3}
+  baseLanguageID: 
+  stringIDs:
+  - Ariadne_Outline-Start-0
+  - Ariadne_Outline-Start-1
+  - Ariadne_Outline-Start-2
+  - Ariadne_Outline-Start-3
+  - Ariadne_Outline-Start-4
+  - Ariadne_Outline-Start-5
+  - Ariadne_Outline-Start-6
+  - Ariadne_Outline-conversation_2-7
+  - Ariadne_Outline-conversation_2-8
+  - Ariadne_Outline-wrong-9
+  - Ariadne_Outline-wrong-10
+  compilationStatus: 1
+  isSuccesfullyCompiled: 1
+  compilationErrorMessage: 
+  baseLanguage: {instanceID: 0}
+  localizations: []

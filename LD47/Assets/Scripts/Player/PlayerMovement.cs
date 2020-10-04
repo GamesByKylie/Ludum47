@@ -27,6 +27,8 @@ public class PlayerMovement : MonoBehaviour
     private PlayerAttack pa;
     private Camera cam;
 
+    private bool allowMovement = true;
+
     private void OnValidate()
     {
         rb = GetComponent<Rigidbody>();
@@ -56,37 +58,40 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        float horiz = Input.GetAxis("Horizontal");
-        float vert = Input.GetAxis("Vertical");
+        if (allowMovement)
+        {
+            float horiz = Input.GetAxis("Horizontal");
+            float vert = Input.GetAxis("Vertical");
 
-        Vector3 fwd = transform.forward * vert;
-        Vector3 side = transform.right * horiz;
+            Vector3 fwd = transform.forward * vert;
+            Vector3 side = transform.right * horiz;
 
-        Vector3 movement = Vector3.Normalize(fwd + side) * speed * Time.fixedDeltaTime;
+            Vector3 movement = Vector3.Normalize(fwd + side) * speed * Time.fixedDeltaTime;
 
-        rb.MovePosition(transform.position + movement);
+            rb.MovePosition(transform.position + movement);
 
-        float lookHoriz = Input.GetAxis("Mouse X");
-        float lookVert = Input.GetAxis("Mouse Y");
+            float lookHoriz = Input.GetAxis("Mouse X");
+            float lookVert = Input.GetAxis("Mouse Y");
 
-        Vector3 rotation = new Vector3(0f, lookHoriz, 0f) * rotSpeed;
+            Vector3 rotation = new Vector3(0f, lookHoriz, 0f) * rotSpeed;
 
-        transform.localEulerAngles += rotation;
+            transform.localEulerAngles += rotation;
         
-        cam.transform.localEulerAngles += new Vector3(lookVert, 0f, 0f) * rotSpeed;
-        float eulerX = cam.transform.localEulerAngles.x;
+            cam.transform.localEulerAngles += new Vector3(lookVert, 0f, 0f) * rotSpeed;
+            float eulerX = cam.transform.localEulerAngles.x;
 
-        if (eulerX < 360 && eulerX > 180)
-        {
-            eulerX = Mathf.Clamp(eulerX, rotLimits.x + 360, 360);
+            if (eulerX < 360 && eulerX > 180)
+            {
+                eulerX = Mathf.Clamp(eulerX, rotLimits.x + 360, 360);
+            }
+            else
+            {
+                eulerX = Mathf.Clamp(eulerX, 0, rotLimits.y);
+            }
+
+            cam.transform.localEulerAngles = new Vector3(eulerX, 0f, 0f);
         }
-        else
-        {
-            eulerX = Mathf.Clamp(eulerX, 0, rotLimits.y);
-        }
-
-        cam.transform.localEulerAngles = new Vector3(eulerX, 0f, 0f);
-
+        
     }
 
     public event EventHandler<OnPlayerEnterCellEventArgs> OnPlayerEnterCell;
@@ -130,5 +135,10 @@ public class PlayerMovement : MonoBehaviour
         yield return null;
         ph.enabled = false;
         pa.enabled = false;
+    }
+
+    public void ToggleMovement(bool move)
+    {
+        allowMovement = move;
     }
 }
