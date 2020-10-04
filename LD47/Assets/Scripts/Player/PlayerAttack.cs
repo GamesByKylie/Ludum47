@@ -16,8 +16,15 @@ public class PlayerAttack : Attack
 
         if (timer >= currentWeapon.cooldown && Input.GetKeyDown(KeyCode.Mouse0))
         {
-            Debug.Log("Player attacking at " + timer);
-            anim.SetTrigger("Attack");
+            if (currentWeapon.Equals(unarmed))
+            {
+                anim.SetTrigger("Attack");
+            }
+            else
+            {
+                anim.SetTrigger("Sword");
+            }
+
             timer = 0.0f;
         }
 
