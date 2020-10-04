@@ -15,8 +15,11 @@ public class GameController : MonoBehaviour
 
     [Header("Items")]
     public Item crown;
+    public Transform crownSpawn;
     public Item goldenThreadPickup;
+    public Transform threadSpawn;
     public Item sword;
+    public Transform swordSpawn;
     public GoldenThread thread;
 
     private GameObject crownObj;
@@ -29,23 +32,35 @@ public class GameController : MonoBehaviour
     private bool sbInitialized = false;
     private GameObject minotaurObj;
 
+    public bool EarnedCrown
+    {
+        get; set;
+    }
+
+    public bool EarnedThread
+    {
+        get; set;
+    }
+
+    public bool EarnedSword
+    {
+        get; set;
+    }
+
     void Start()
     {
-        //Cursor.lockState = CursorLockMode.Locked;
-        //Cursor.visible = false;
-
-        crownObj = SpawnItem(crown);
-        threadPickupObj = SpawnItem(goldenThreadPickup);
-        swordObj = SpawnItem(sword);
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
 
         sm.OnMazeStart += Controller_OnMazeStart;
         ph.OnPlayerDeath += Controller_OnPlayerDeath;
     }
 
-    public GameObject SpawnItem(Item i)
+    public GameObject SpawnItem(Item i, Transform spawn)
     {
         Item spawned = Instantiate(i);
-        spawned.transform.position = new Vector3(Random.Range(-5f, -2f), 0f, Random.Range(-5f, -2f));
+        spawned.transform.position = spawn.position;
+        spawned.transform.rotation = spawn.rotation;
         spawned.gc = this;
         return spawned.gameObject;
     }
@@ -65,10 +80,6 @@ public class GameController : MonoBehaviour
             Destroy(swordObj);
         }
 
-        crownObj = SpawnItem(crown);
-        threadPickupObj = SpawnItem(goldenThreadPickup);
-        swordObj = SpawnItem(sword);
-
         timing = false;
         timer = timeLimit;
 
@@ -87,6 +98,16 @@ public class GameController : MonoBehaviour
         timeIndicator.value = timeLimit;
         timer = timeLimit;
         timing = true;
+
+        if (EarnedCrown)
+        {
+            crownObj = SpawnItem(crown, crownSpawn);
+        }
+        
+        if (EarnedSword)
+        {
+            swordObj = SpawnItem(sword, swordSpawn);
+        }
     }
 
     private void Controller_OnPlayerEnterBossRoom()
@@ -119,6 +140,16 @@ public class GameController : MonoBehaviour
             {
                 timeIndicator.value = timer;
             }
+        }
+    }
+
+    public void TrySpawnThread()
+    {
+        Debug.Log("Trying to spawn thread object");
+        if (EarnedThread)
+        {
+            Debug.Log("Spawning thread object");
+            threadPickupObj = SpawnItem(goldenThreadPickup, threadSpawn);
         }
     }
 

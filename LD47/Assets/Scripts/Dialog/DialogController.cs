@@ -9,6 +9,8 @@ public class DialogController : MonoBehaviour
     public Image theseusNametag;
     public Image ariadneNametag;
 
+    public GameController gc;
+
     public TMPro.TextMeshProUGUI content;
     public TMPro.TextMeshProUGUI continueMessage;
 
@@ -44,6 +46,25 @@ public class DialogController : MonoBehaviour
         }
     }
 
+    [YarnCommand("earnthread")]
+    public void EarnThread()
+    {
+        Debug.Log("Running EarnThread");
+        gc.EarnedThread = true;
+    }
+
+    [YarnCommand("earnsword")]
+    public void EarnSword()
+    {
+        gc.EarnedSword = true;
+    }
+
+    [YarnCommand("earncrown")]
+    public void EarnCrown()
+    {
+        gc.EarnedCrown = true;
+    }
+
     public void DisplayContinueMessage(bool toggle)
     {
         continueMessage.gameObject.SetActive(toggle);
@@ -57,5 +78,14 @@ public class DialogController : MonoBehaviour
     public void StartDialog()
     {
         runner.ResetDialogue();
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+    }
+
+    public void EndDialog()
+    {
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+        gc.TrySpawnThread();
     }
 }

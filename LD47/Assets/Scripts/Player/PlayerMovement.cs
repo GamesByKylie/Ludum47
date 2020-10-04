@@ -16,6 +16,7 @@ public class PlayerMovement : MonoBehaviour
 
     public StartMaze sm;
     public MazeGenerator mg;
+    public Transform playerMazeSpawn;
 
     [Header("General Movement")]
     public float speed;
@@ -101,11 +102,17 @@ public class PlayerMovement : MonoBehaviour
     {
         if (other.CompareTag("Cell"))
         {
-            OnPlayerEnterCell?.Invoke(this, new OnPlayerEnterCellEventArgs { position = other.transform.position });
+            if (!other.GetComponent<Cell>().triggered)
+            {
+                OnPlayerEnterCell?.Invoke(this, new OnPlayerEnterCellEventArgs { position = other.transform.position });
+            }
         }
         else if (other.CompareTag("Checkpoint"))
         {
-            OnPlayerEnterCheckpoint?.Invoke(this, new OnPlayerEnterCellEventArgs { position = other.transform.position });
+            if (!other.GetComponent<Cell>().triggered)
+            {
+                OnPlayerEnterCheckpoint?.Invoke(this, new OnPlayerEnterCellEventArgs { position = other.transform.position });            
+            }
         }
     }
 
@@ -119,8 +126,8 @@ public class PlayerMovement : MonoBehaviour
 
     private void Player_OnMazeStart()
     {
-        transform.position = new Vector3(mg.initialPosition.x, 0, mg.initialPosition.y);
-        transform.rotation = Quaternion.Euler(0f, 180f, 0f);
+        transform.position = playerMazeSpawn.position;
+        transform.rotation = playerMazeSpawn.rotation;
         ph.enabled = true;
         pa.enabled = true;
     }

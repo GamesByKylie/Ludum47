@@ -10,11 +10,12 @@ Hey, isn't it like super messed up that your dad keeps feeding people to your mo
 I mean, yeah. This whole thing is wack.
 
 << name DialogCanvas Theseus >>
-[[ This is the wrong answer |wrong]]
-[[ This is also wrong |wrong]]
+
 [[ This is the right answer |conversation_2]]
-[[ This is still wrong! |wrong]]
-[[ Also wrong still |wrong]]
+[[ This is the wrong answer |wrong]]
+[[ Give just thread |earn_thread]]
+[[ Give just sword and crown |earn_sword_crown]]
+[[ Give all 3 |earn_everything]]
 ===
 title: conversation_2
 tags: 
@@ -37,4 +38,41 @@ You're super rude and I hope my weird half-brother eats you.
 
 << name DialogCanvas Theseus >>
 Well this sucks.
+===
+title: earn_thread
+tags: 
+colorID: 0
+position: 1581,1613
+---
+<< name DialogCanvas Ariadne >>
+It is a tragedy to see so many young men sent to their deaths. Perhaps I could help you a little.
+Take this golden thread. If you unspool it behind you, you will be able to trace your path through the Labyrinth.
+
+<< earnthread DialogCanvas >>
+
+<< name DialogCanvas Theseus >>
+Thank you, Princess. I am sure it will serve me well.
+===
+title: earn_sword_crown
+tags: 
+colorID: 0
+position: 1888,1622
+---
+<< name DialogCanvas Ariadne >>
+Here take this sword and my glowing crown.
+
+<< earnsword DialogCanvas >>
+<< earncrown DialogCanvas >>
+===
+title: earn_everything
+tags: 
+colorID: 0
+position: 2240,1629
+---
+<< name DialogCanvas Ariadne >>
+Just take everything lol.
+
+<< earnthread DialogCanvas >>
+<< earnsword DialogCanvas >>
+<< earncrown DialogCanvas >>
 ===
