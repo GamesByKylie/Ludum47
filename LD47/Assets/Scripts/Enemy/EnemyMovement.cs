@@ -18,6 +18,7 @@ public class EnemyMovement : MonoBehaviour
             if (Vector3.Distance(transform.position, target.position) > minDistance)
             {
                 Vector3 newPos = Vector3.MoveTowards(transform.position, target.position, speed * Time.fixedDeltaTime);
+                newPos = new Vector3(newPos.x, 0f, newPos.z);
                 transform.position = newPos;
             }
         }

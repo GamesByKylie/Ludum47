@@ -12,8 +12,11 @@ public class PlayerAttack : Attack
 
     private void Update()
     {
-        timer += Time.fixedDeltaTime;
-
+        if (timing)
+        {
+            timer += Time.fixedDeltaTime;
+        }
+        
         if (timer >= currentWeapon.cooldown && Input.GetKeyDown(KeyCode.Mouse0))
         {
             if (currentWeapon.Equals(unarmed))
