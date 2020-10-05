@@ -7,14 +7,6 @@ public class PlayerHealth : Health
 {
     public event Action OnPlayerDeath;
 
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            Die();
-        }
-    }
-
     private void OnEnable()
     {
         healthBar.gameObject.SetActive(true);

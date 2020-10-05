@@ -37,24 +37,12 @@ public class PlayerMovement : MonoBehaviour
     private bool dashing = false;
     private StartBoss sb;
 
-    private void OnValidate()
+    private void Start()
     {
         rb = GetComponent<Rigidbody>();
         cam = GetComponentInChildren<Camera>();
         ph = GetComponent<PlayerHealth>();
         pa = GetComponent<PlayerAttack>();
-    }
-
-    private void Start()
-    {
-        if (rb == null)
-        {
-            rb = GetComponent<Rigidbody>();
-        }
-        if (cam == null)
-        {
-            cam = GetComponentInChildren<Camera>();
-        }
 
         sm.OnMazeStart += Player_OnMazeStart;
         ph.OnPlayerDeath += Movement_OnPlayerDeath;
@@ -103,29 +91,29 @@ public class PlayerMovement : MonoBehaviour
             {
                 dashing = false;
             }
-        }
 
-        //Rotation
-        float lookHoriz = Input.GetAxis("Mouse X");
-        float lookVert = Input.GetAxis("Mouse Y");
+            //Rotation
+            float lookHoriz = Input.GetAxis("Mouse X");
+            float lookVert = Input.GetAxis("Mouse Y");
 
-        Vector3 rotation = new Vector3(0f, lookHoriz, 0f) * rotSpeed;
+            Vector3 rotation = new Vector3(0f, lookHoriz, 0f) * rotSpeed;
 
-        transform.localEulerAngles += rotation;
+            transform.localEulerAngles += rotation;
         
-        cam.transform.localEulerAngles += new Vector3(lookVert, 0f, 0f) * rotSpeed;
-        float eulerX = cam.transform.localEulerAngles.x;
+            cam.transform.localEulerAngles += new Vector3(lookVert, 0f, 0f) * rotSpeed;
+            float eulerX = cam.transform.localEulerAngles.x;
 
-        if (eulerX < 360 && eulerX > 180)
-        {
-            eulerX = Mathf.Clamp(eulerX, rotLimits.x + 360, 360);
-        }
-        else
-        {
-            eulerX = Mathf.Clamp(eulerX, 0, rotLimits.y);
-        }
+            if (eulerX < 360 && eulerX > 180)
+            {
+                eulerX = Mathf.Clamp(eulerX, rotLimits.x + 360, 360);
+            }
+            else
+            {
+                eulerX = Mathf.Clamp(eulerX, 0, rotLimits.y);
+            }
 
-        cam.transform.localEulerAngles = new Vector3(eulerX, 0f, 0f);
+            cam.transform.localEulerAngles = new Vector3(eulerX, 0f, 0f);
+        }
         
     }
 

@@ -55,6 +55,8 @@ public class EnemyHealth : Health
     {
         base.Die();
         anim.SetTrigger("Die");
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
         SceneManager.LoadScene(2);
     }
 }

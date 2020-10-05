@@ -8,6 +8,7 @@ public class GameController : MonoBehaviour
     public PlayerHealth ph;
     public StartMaze sm;
     public StartBoss sb;
+    public DialogController dc;
     public float timeLimit = 2f;
     public Slider timeIndicator;
     public GameObject minotaur;
@@ -54,6 +55,21 @@ public class GameController : MonoBehaviour
 
         sm.OnMazeStart += Controller_OnMazeStart;
         ph.OnPlayerDeath += Controller_OnPlayerDeath;
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape) && Cursor.lockState != CursorLockMode.None)
+        {
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+        }
+
+        if (!dc.dialogRunning && Input.GetKeyDown(KeyCode.Mouse0) && Cursor.lockState != CursorLockMode.Locked)
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+        }
     }
 
     public GameObject SpawnItem(Item i, Transform spawn)

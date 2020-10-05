@@ -17,6 +17,8 @@ public class DialogController : MonoBehaviour
     private DialogueUI ui;
     private DialogueRunner runner;
 
+    [HideInInspector] public bool dialogRunning = false;
+
     private void Start()
     {
         ui = GetComponent<DialogueUI>();
@@ -67,12 +69,14 @@ public class DialogController : MonoBehaviour
 
     public void DisplayContinueMessage(bool toggle)
     {
+        continueMessage.text = "Spacebar or Left Click to advance";
         continueMessage.gameObject.SetActive(toggle);
     }
 
     public void ClearDialog()
     {
         content.text = "";
+        continueMessage.text = "Select an option to continue";
     }
 
     public void StartDialog()
@@ -80,6 +84,7 @@ public class DialogController : MonoBehaviour
         runner.ResetDialogue();
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
+        dialogRunning = true;
     }
 
     public void EndDialog()
@@ -87,5 +92,6 @@ public class DialogController : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
         gc.TrySpawnThread();
+        dialogRunning = false;
     }
 }
