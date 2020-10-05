@@ -36,6 +36,7 @@ public class PlayerMovement : MonoBehaviour
     private float dashTimer;
     private bool dashing = false;
     private StartBoss sb;
+    private Animator anim;
 
     private void Start()
     {
@@ -43,6 +44,7 @@ public class PlayerMovement : MonoBehaviour
         cam = GetComponentInChildren<Camera>();
         ph = GetComponent<PlayerHealth>();
         pa = GetComponent<PlayerAttack>();
+        anim = GetComponent<Animator>();
 
         sm.OnMazeStart += Player_OnMazeStart;
         ph.OnPlayerDeath += Movement_OnPlayerDeath;
@@ -83,6 +85,22 @@ public class PlayerMovement : MonoBehaviour
             if (!dashing)
             {
                 //Movement
+                if (Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0)
+                {
+                    if (!anim.GetBool("Walking"))
+                    {
+                        anim.SetBool("Walking", true);
+                    }
+
+                }
+                else
+                {
+                    if (anim.GetBool("Walking"))
+                    {
+                        anim.SetBool("Walking", false);
+                    }
+                }
+
                 Vector3 movement = Vector3.Normalize(GetMovementDirection()) * speed * Time.fixedDeltaTime;
 
                 rb.MovePosition(transform.position + movement);
@@ -191,6 +209,8 @@ public class PlayerMovement : MonoBehaviour
     private void Movement_OnPlayerEnterBossRoom()
     {
         StartCoroutine(FreezeForTime(5.2f));
+        transform.rotation = Quaternion.Euler(0f, sb.playerEntrance.eulerAngles.y, 0f);
+        cam.transform.rotation = Quaternion.Euler(sb.playerEntrance.eulerAngles.x, 0f, 0f);
     }
 
     public IEnumerator FreezeForTime(float pause)

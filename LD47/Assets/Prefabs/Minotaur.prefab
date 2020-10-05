@@ -548,7 +548,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2adca696275d31f4c93cccdf477f0937, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 400
+  maxHealth: 800
   healthBar: {fileID: 1463456820}
   phase2TriggerPercent: 0.7
   phase3TriggerPercent: 0.3
