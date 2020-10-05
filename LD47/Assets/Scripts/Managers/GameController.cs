@@ -14,6 +14,8 @@ public class GameController : MonoBehaviour
     public CandleFlicker timeCandle;
     public GameObject minotaur;
     public Transform minotaurSpawnPoint;
+    public GameObject instructions;
+    public float instructionsDuration;
 
     [Header("Items")]
     public Item crown;
@@ -63,6 +65,7 @@ public class GameController : MonoBehaviour
         sm.OnMazeStart += Controller_OnMazeStart;
         ph.OnPlayerDeath += Controller_OnPlayerDeath;
         timeCandle.Extinguish();
+        StartCoroutine(HideInstructions());
     }
 
     private void Update()
@@ -199,6 +202,12 @@ public class GameController : MonoBehaviour
             Debug.Log("Spawning thread object");
             threadPickupObj = SpawnItem(goldenThreadPickup, threadSpawn);
         }
+    }
+
+    private IEnumerator HideInstructions()
+    {
+        yield return new WaitForSeconds(instructionsDuration);
+        instructions.SetActive(false);
     }
 
 }
