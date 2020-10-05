@@ -8,6 +8,7 @@ TagManager:
   - Cell
   - Checkpoint
   - Checkpoint Passed
+  - Wall
   layers:
   - Default
   - TransparentFX

@@ -137,6 +137,9 @@ public class EnemyAttack : Attack
             target.TakeDamage(jumpAttack.damage);
         }
 
-
+        foreach (Transform t in bulletSpawns)
+        {
+            Instantiate(jumpGroundBullet, t.position, t.rotation);
+        }
     }
 }
