@@ -35,6 +35,7 @@ public class PlayerMovement : MonoBehaviour
     private bool allowMovement = true;
     private float dashTimer;
     private bool dashing = false;
+    private StartBoss sb;
 
     private void OnValidate()
     {
@@ -72,18 +73,12 @@ public class PlayerMovement : MonoBehaviour
 
             if ((Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0) && dashTimer >= dashCooldown && Input.GetKeyDown(KeyCode.LeftShift))
             {
-                Vector3 targetPosition = transform.position + (transform.forward * dashSpeed);
+                Vector3 targetPosition = transform.position + (GetMovementDirection() * dashSpeed);
 
-                //Theoretically, this will go to where you'll land, point back towards where you are now, and won't let you dash if there's anything in your way
-                //SHOULD prevent you from going through walls?
+                //Checks where you're going to land and makes sure your path there is clear
                 RaycastHit hit;
-                if (Physics.Raycast(transform.position, transform.forward, out hit, dashSpeed))
+                if (!Physics.Raycast(transform.position, GetMovementDirection(), out hit, dashSpeed))
                 {
-                    Debug.Log($"Raycast blocked by {hit.collider.name}");
-                }
-                else
-                {
-                    Debug.Log("Path is clear to dash through");
                     dashing = true;
                     rb.MovePosition(targetPosition);
                 }
@@ -96,16 +91,11 @@ public class PlayerMovement : MonoBehaviour
     {
         if (allowMovement)
         {
+            //If you do this the same frame as you dash, it'll overwrite that motion and you won't dash at all
             if (!dashing)
             {
                 //Movement
-                float horiz = Input.GetAxis("Horizontal");
-                float vert = Input.GetAxis("Vertical");
-
-                Vector3 fwd = transform.forward * vert;
-                Vector3 side = transform.right * horiz;
-
-                Vector3 movement = Vector3.Normalize(fwd + side) * speed * Time.fixedDeltaTime;
+                Vector3 movement = Vector3.Normalize(GetMovementDirection()) * speed * Time.fixedDeltaTime;
 
                 rb.MovePosition(transform.position + movement);
             }
@@ -191,5 +181,35 @@ public class PlayerMovement : MonoBehaviour
     public void ToggleMovement(bool move)
     {
         allowMovement = move;
+    }
+
+    private Vector3 GetMovementDirection()
+    {
+        float horiz = Input.GetAxis("Horizontal");
+        float vert = Input.GetAxis("Vertical");
+
+        Vector3 fwd = transform.forward * vert;
+        Vector3 side = transform.right * horiz;
+
+        return fwd + side;
+    }
+
+    public void SetSB(StartBoss s)
+    {
+        sb = s;
+        sb.OnPlayerEnterBossRoom += Movement_OnPlayerEnterBossRoom;
+    }
+
+    private void Movement_OnPlayerEnterBossRoom()
+    {
+        StartCoroutine(FreezeForTime(5.2f));
+    }
+
+    public IEnumerator FreezeForTime(float pause)
+    {
+        Debug.Log("Player freezing for " + pause);
+        ToggleMovement(false);
+        yield return new WaitForSeconds(pause);
+        ToggleMovement(true);
     }
 }

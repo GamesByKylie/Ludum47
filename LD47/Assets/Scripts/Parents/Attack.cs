@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class Attack : MonoBehaviour
 {
-    public Weapon unarmed;
-    public Weapon weapon;
+    public Weapon primaryAttack;
 
     public Health target;
 
@@ -21,7 +20,7 @@ public class Attack : MonoBehaviour
 
     private void Awake()
     {
-        currentWeapon = unarmed;
+        currentWeapon = primaryAttack;
         if (anim == null)
         {
             anim = GetComponent<Animator>();
@@ -38,7 +37,7 @@ public class Attack : MonoBehaviour
 
     public virtual void PerformAttack()
     {
-        if (target != null && Vector3.Distance(transform.position, target.transform.position) <= currentWeapon.range)
+        if (InRange(currentWeapon))
         {
             target.TakeDamage(currentWeapon.damage);
         }
@@ -48,8 +47,8 @@ public class Attack : MonoBehaviour
     {
         w.gameObject.SetActive(true);
 
-        //Unarmed is on the base game object, so we don't want to disable that
-        if (!currentWeapon.Equals(unarmed))
+        //If the object isn't on this parent, turn it off
+        if (!currentWeapon.gameObject.Equals(gameObject))
         {
             currentWeapon.gameObject.SetActive(false);
         }
@@ -64,5 +63,15 @@ public class Attack : MonoBehaviour
     public void StartTiming()
     {
         timing = true;
+    }
+
+    public bool InRange(Weapon w)
+    {
+        return target != null && Vector3.Distance(transform.position, target.transform.position) <= w.range;
+    }
+
+    public bool InRange(float range)
+    {
+        return target != null && Vector3.Distance(transform.position, target.transform.position) <= range;
     }
 }
