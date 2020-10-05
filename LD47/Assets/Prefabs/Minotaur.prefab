@@ -472,7 +472,7 @@ Animator:
   m_Controller: {fileID: 9100000, guid: 59531d7906ae86f4aa6dcc60ffb22a82, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
-  m_ApplyRootMotion: 1
+  m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
@@ -495,12 +495,7 @@ MonoBehaviour:
   swingAttack: {fileID: 3989817267108811240}
   stunAttack: {fileID: 2404756044557099207}
   jumpAttack: {fileID: 8380887051823425417}
-  stunDuration: 3
   jumpTriggerRange: 20
-  jumpDistance: 6
-  jumpGroundBullet: {fileID: 0}
-  bulletNum: 0
-  bulletAngleArc: 0
   phase: 1
 --- !u!114 &7656564641590677214
 MonoBehaviour:
@@ -565,7 +560,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponName: stun
   damage: 0
-  range: 10
+  range: 7
   cooldown: 10
 --- !u!114 &8380887051823425417
 MonoBehaviour:

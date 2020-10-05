@@ -7,43 +7,15 @@ public class EnemyAttack : Attack
     public Weapon swingAttack;
     public Weapon stunAttack;
     public Weapon jumpAttack;
-
-    [Header("Special Attacks")]
-    public float stunDuration;
     public float jumpTriggerRange;
-    public float jumpDistance;
-    public GameObject jumpGroundBullet;
-    public Transform[] bulletSpawns;
-
 
     [HideInInspector]public int phase = 1;
 
     private float stunTimer = 0.0f;
     private float jumpTimer = 0.0f;
-
-    private PlayerMovement pm;
-    private EnemyMovement em;
-    private bool setPM = false;
-
-    private void Start()
-    {
-        if (pm == null)
-        {
-            pm = target.GetComponent<PlayerMovement>();
-            setPM = true;
-        }
-
-        em = GetComponent<EnemyMovement>();
-    }
-
+    
     private void Update()
     {
-        if (!setPM && pm == null)
-        {
-            pm = target.GetComponent<PlayerMovement>();
-            setPM = true;
-        }
-
         if (timing)
         {
             timer += Time.fixedDeltaTime;
@@ -85,6 +57,7 @@ public class EnemyAttack : Attack
                 }
                 else if (Vector3.Distance(transform.position, target.transform.position) <= jumpTriggerRange)
                 {
+                    Debug.Log("In range for jump");
                     SwapIfNeeded(jumpAttack);
                     CheckAttack(ref jumpTimer, "Jump", jumpTriggerRange);
                 }
@@ -98,9 +71,14 @@ public class EnemyAttack : Attack
     {
         if (timer >= currentWeapon.cooldown && InRange(range))
         {
+            Debug.Log($"Setting {animTrigger}");
             anim.SetTrigger(animTrigger);
             timer = 0.0f;
             PauseTiming();
+        }
+        else if (timer < currentWeapon.cooldown)
+        {
+            Debug.Log($"Still waiting on {currentWeapon.weaponName} cooldown");
         }
     }
 
@@ -114,29 +92,15 @@ public class EnemyAttack : Attack
 
     public void StunAttack()
     {
+        Debug.Log("Stunning roar");
         stunTimer = 0.0f;
 
-        if (InRange(stunAttack))
-        {
-            StartCoroutine(pm.FreezeForTime(stunDuration));
-        }
-    }
-
-    public void MoveJump()
-    {
-        jumpTimer = 0.0f;
-
-        em.JumpForward(jumpDistance);
     }
 
     public void JumpAttack()
     {
-        //Spawn ground bullet things
-        if (InRange(jumpAttack))
-        {
-            target.TakeDamage(jumpAttack.damage);
-        }
-
+        Debug.Log("Jumping pound");
+        jumpTimer = 0.0f;
 
     }
 }

@@ -17,7 +17,6 @@ public class StartBoss : MonoBehaviour
         gc.sb = this;
         gc.minotaurSpawnPoint = minotaurSpawn;
         gc.ph.OnPlayerDeath += Boss_OnPlayerDeath;
-        gc.ph.GetComponent<PlayerMovement>().SetSB(this);
     }
 
 

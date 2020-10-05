@@ -35,7 +35,6 @@ public class PlayerMovement : MonoBehaviour
     private bool allowMovement = true;
     private float dashTimer;
     private bool dashing = false;
-    private StartBoss sb;
 
     private void OnValidate()
     {
@@ -192,24 +191,5 @@ public class PlayerMovement : MonoBehaviour
         Vector3 side = transform.right * horiz;
 
         return fwd + side;
-    }
-
-    public void SetSB(StartBoss s)
-    {
-        sb = s;
-        sb.OnPlayerEnterBossRoom += Movement_OnPlayerEnterBossRoom;
-    }
-
-    private void Movement_OnPlayerEnterBossRoom()
-    {
-        StartCoroutine(FreezeForTime(5.2f));
-    }
-
-    public IEnumerator FreezeForTime(float pause)
-    {
-        Debug.Log("Player freezing for " + pause);
-        ToggleMovement(false);
-        yield return new WaitForSeconds(pause);
-        ToggleMovement(true);
     }
 }
