@@ -112,6 +112,7 @@ MonoBehaviour:
   wallWidth: 0.2
   wallHeight: 5
   ph: {fileID: 0}
+  triggered: 0
 --- !u!65 &1800956135430489309
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -123,5 +124,5 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.8, y: 12.050712, z: 0.8}
+  m_Size: {x: 0.45, y: 12.050712, z: 0.5}
   m_Center: {x: 0, y: 6.75339, z: 0}

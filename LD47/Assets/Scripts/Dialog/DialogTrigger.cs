@@ -6,6 +6,7 @@ public class DialogTrigger : MonoBehaviour
 {
     public DialogController dc;
     public PlayerHealth ph;
+    public string startNode;
 
     private bool playerInRange = false;
     private bool dialogCompleted = false;
@@ -35,7 +36,7 @@ public class DialogTrigger : MonoBehaviour
     {
         if (playerInRange && !dialogCompleted && (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.Mouse0)))
         {
-            dc.StartDialog();
+            dc.StartDialog(startNode);
             dialogCompleted = true;
         }
     }

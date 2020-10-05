@@ -1,8 +1,10 @@
-title: Start
+title: AriadneStart
 tags: 
 colorID: 0
 position: 1328,1583
 ---
+<< setname DialogCanvas Ariadne >>
+
 << name DialogCanvas Theseus >>
 I did not expect to see such a fair maiden when I was sent to my death here at Knossos! I am Theseus, prince of Athens. Pray tell, who are you?
 

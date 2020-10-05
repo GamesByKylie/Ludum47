@@ -32,6 +32,12 @@ public class GameController : MonoBehaviour
 
     private bool sbInitialized = false;
     private GameObject minotaurObj;
+    private int deathNum = 0;
+
+    public bool ShowTimer
+    {
+        get; set;
+    }
 
     public bool EarnedCrown
     {
@@ -96,22 +102,37 @@ public class GameController : MonoBehaviour
             Destroy(swordObj);
         }
 
+        EarnedCrown = false;
+        EarnedSword = false;
+        EarnedThread = false;
+
         timing = false;
         timer = timeLimit;
-
+        ShowTimer = false;
         timeIndicator.gameObject.SetActive(false);
 
         if (minotaurObj != null)
         {
             Destroy(minotaurObj);
         }
+
+        if (deathNum == 0)
+        {
+            dc.StartDialog("AthenaStart");
+        }
+
+        deathNum++;
     }
 
     private void Controller_OnMazeStart()
     {
-        timeIndicator.gameObject.SetActive(true);
-        timeIndicator.maxValue = timeLimit;
-        timeIndicator.value = timeLimit;
+        if (ShowTimer)
+        {
+            timeIndicator.gameObject.SetActive(true);
+            timeIndicator.maxValue = timeLimit;
+            timeIndicator.value = timeLimit;
+        }
+
         timer = timeLimit;
         timing = true;
 

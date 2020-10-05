@@ -1,0 +1,22 @@
+fileFormatVersion: 2
+guid: d03ef19284583734f91f465ec4c6c5e8
+ScriptedImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 2
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+  script: {fileID: 11500000, guid: 94073015eacc34c1d8fc6786e43d60ca, type: 3}
+  baseLanguageID: en-US
+  stringIDs:
+  - Athena_Convo-AthenaStart-0
+  - Athena_Convo-AthenaStart-1
+  - Athena_Convo-AthenaStart-2
+  - Athena_Convo-AthenaStart-3
+  compilationStatus: 1
+  isSuccesfullyCompiled: 1
+  compilationErrorMessage: 
+  baseLanguage: {fileID: 7128917941130120860, guid: d03ef19284583734f91f465ec4c6c5e8,
+    type: 3}
+  localizations: []

@@ -7,7 +7,12 @@ using UnityEngine.UI;
 public class DialogController : MonoBehaviour
 {
     public Image theseusNametag;
-    public Image ariadneNametag;
+    public Image otherNametag;
+    public TMPro.TextMeshProUGUI otherName;
+    public Image otherSprite;
+    public Sprite ariadneSprite;
+    public Sprite athenaSprite;
+    public Sprite guardSprite;
 
     public GameController gc;
 
@@ -16,6 +21,7 @@ public class DialogController : MonoBehaviour
 
     private DialogueUI ui;
     private DialogueRunner runner;
+    private bool ariadne = false;
 
     [HideInInspector] public bool dialogRunning = false;
 
@@ -38,12 +44,12 @@ public class DialogController : MonoBehaviour
     {
         if (name == "Theseus")
         {
-            ariadneNametag.gameObject.SetActive(false);
+            otherNametag.gameObject.SetActive(false);
             theseusNametag.gameObject.SetActive(true);
         }
-        else if (name == "Ariadne")
+        else
         {
-            ariadneNametag.gameObject.SetActive(true);
+            otherNametag.gameObject.SetActive(true);
             theseusNametag.gameObject.SetActive(false);
         }
     }
@@ -67,6 +73,35 @@ public class DialogController : MonoBehaviour
         gc.EarnedCrown = true;
     }
 
+    [YarnCommand("earncandle")]
+    public void EarnCandle()
+    {
+        gc.ShowTimer = true;
+    }
+
+    [YarnCommand("setname")]
+    public void SetName(string n)
+    {
+        if (n == "Ariadne")
+        {
+            ariadne = true;
+            otherSprite.sprite = ariadneSprite;
+            otherName.text = "Ariadne";
+        }
+        else if (n == "Athena")
+        {
+            ariadne = false;
+            otherSprite.sprite = athenaSprite;
+            otherName.text = "Athena";
+        }
+        else if (n == "Guard")
+        {
+            ariadne = false;
+            otherSprite.sprite = guardSprite;
+            otherName.text = "Guard";
+        }
+    }
+
     public void DisplayContinueMessage(bool toggle)
     {
         continueMessage.text = "Spacebar or Left Click to advance";
@@ -79,8 +114,9 @@ public class DialogController : MonoBehaviour
         continueMessage.text = "Select an option to continue";
     }
 
-    public void StartDialog()
+    public void StartDialog(string startNode)
     {
+        runner.startNode = startNode;
         runner.ResetDialogue();
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
@@ -91,7 +127,10 @@ public class DialogController : MonoBehaviour
     {
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
-        gc.TrySpawnThread();
+        if (ariadne)
+        {
+            gc.TrySpawnThread();
+        }
         dialogRunning = false;
     }
 }

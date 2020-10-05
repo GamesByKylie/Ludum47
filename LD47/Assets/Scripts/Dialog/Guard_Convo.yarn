@@ -1,0 +1,13 @@
+title: GuardStart
+tags: 
+colorID: 0
+position: 960,494
+---
+<< setname DialogCanvas Guard >>
+
+<< name DialogCanvas Guard >> 
+It's time for you to enter the Labyrinth, Athenian. But we are not cruel - here, take this candle. You should be fine as long as it still glows.
+Once it goes out, though - well, let us just say that there is something down there waiting to strike in the darkness.
+
+<< earncandle DialogCanvas >>
+===
