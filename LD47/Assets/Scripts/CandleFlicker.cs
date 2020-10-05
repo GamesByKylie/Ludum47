@@ -28,6 +28,10 @@ public class CandleFlicker : MonoBehaviour
 
     public void Extinguish()
     {
+        if (l == null)
+        {
+            l = GetComponent<Light>();
+        }
         l.intensity = 0;
         flickering = false;
     }

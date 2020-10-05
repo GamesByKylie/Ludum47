@@ -11,10 +11,12 @@ public class PlayerItems : MonoBehaviour
     public GameObject wornCrown;
 
     private PlayerHealth ph;
+    private AudioSource aud;
 
     private void Start()
     {
         ph = GetComponent<PlayerHealth>();
+        aud = GetComponent<AudioSource>();
         wornCrown.SetActive(false);
 
         ph.OnPlayerDeath += Items_OnPlayerDeath;
@@ -45,6 +47,7 @@ public class PlayerItems : MonoBehaviour
                 Debug.Log("Unknown item");
             }
 
+            aud.Play();
             Destroy(i.gameObject);
         }
     }

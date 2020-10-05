@@ -36,6 +36,7 @@ public class GameController : MonoBehaviour
     private bool sbInitialized = false;
     private GameObject minotaurObj;
     private int deathNum = 0;
+    private AudioSource aud;
 
     public bool ShowTimer
     {
@@ -66,6 +67,7 @@ public class GameController : MonoBehaviour
         ph.OnPlayerDeath += Controller_OnPlayerDeath;
         timeCandle.Extinguish();
         StartCoroutine(HideInstructions());
+        aud = GetComponent<AudioSource>();
     }
 
     private void Update()
@@ -128,6 +130,7 @@ public class GameController : MonoBehaviour
         }
 
         deathNum++;
+        aud.Play();
     }
 
     private void Controller_OnMazeStart()

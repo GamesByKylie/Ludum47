@@ -1556,6 +1556,16 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7354549371042204477, guid: 8c792752e48d9ba4a9760c5fd2a8148e,
+        type: 3}
+      propertyPath: cooldown
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7354549371042204477, guid: 8c792752e48d9ba4a9760c5fd2a8148e,
+        type: 3}
+      propertyPath: damage
+      value: 20
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 7134059911426773179, guid: 8c792752e48d9ba4a9760c5fd2a8148e, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 8c792752e48d9ba4a9760c5fd2a8148e, type: 3}

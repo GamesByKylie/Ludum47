@@ -16,6 +16,10 @@ public class EnemyAttack : Attack
     public Transform[] bulletSpawns;
     public StunSphere sphere;
 
+    [Header("Audio")]
+    public AudioSource roarAud;
+    public AudioSource gruntAud;
+
 
     [HideInInspector]public int phase = 1;
 
@@ -113,10 +117,16 @@ public class EnemyAttack : Attack
         }
     }
 
+    public override void PerformAttack()
+    {
+        base.PerformAttack();
+        gruntAud.Play();
+    }
+
     public void StunAttack()
     {
         stunTimer = 0.0f;
-
+        roarAud.Play();
         if (InRange(stunAttack))
         {
             StartCoroutine(pm.FreezeForTime(stunDuration));
