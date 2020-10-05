@@ -11,6 +11,7 @@ public class GameController : MonoBehaviour
     public DialogController dc;
     public float timeLimit = 2f;
     public Slider timeIndicator;
+    public CandleFlicker timeCandle;
     public GameObject minotaur;
     public Transform minotaurSpawnPoint;
 
@@ -61,6 +62,7 @@ public class GameController : MonoBehaviour
 
         sm.OnMazeStart += Controller_OnMazeStart;
         ph.OnPlayerDeath += Controller_OnPlayerDeath;
+        timeCandle.Extinguish();
     }
 
     private void Update()
@@ -110,6 +112,7 @@ public class GameController : MonoBehaviour
         timer = timeLimit;
         ShowTimer = false;
         timeIndicator.gameObject.SetActive(false);
+        timeCandle.Extinguish();
 
         if (minotaurObj != null)
         {
@@ -131,6 +134,11 @@ public class GameController : MonoBehaviour
             timeIndicator.gameObject.SetActive(true);
             timeIndicator.maxValue = timeLimit;
             timeIndicator.value = timeLimit;
+            timeCandle.Light();
+        }
+        else
+        {
+            timeCandle.Extinguish();
         }
 
         timer = timeLimit;
@@ -174,6 +182,7 @@ public class GameController : MonoBehaviour
             if (timer <= 0)
             {
                 ph.TakeDamage(2);
+                timeCandle.Extinguish();
             }
             else
             {

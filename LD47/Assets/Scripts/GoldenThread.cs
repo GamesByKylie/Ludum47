@@ -20,6 +20,7 @@ public class GoldenThread : MonoBehaviour
 
     private void Start()
     {
+        Debug.Log("Golden Thread is on");
         GetLineRenderer();
 
         pm.OnPlayerEnterCell += Thread_OnPlayerEnterCell;
@@ -34,6 +35,7 @@ public class GoldenThread : MonoBehaviour
 
         if (allowPath)
         {
+            Debug.Log("Golden Thread is enabled and allowed to make a path");
             if (rend.positionCount > 1 && Vector3XZEquals(rend.GetPosition(rend.positionCount - 2), pos.position))
             {
                 rend.positionCount--;
@@ -54,6 +56,7 @@ public class GoldenThread : MonoBehaviour
         }
         else
         {
+            Debug.Log("Golden Thread is enabled but not allowed to make a path");
             if (rend.positionCount > 0 && Vector3XZEquals(rend.GetPosition(rend.positionCount - 1), pos.position))
             {
                 allowPath = true;

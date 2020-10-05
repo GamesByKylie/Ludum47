@@ -36,22 +36,22 @@ public class Cell : MonoBehaviour
         float height = wallHeight / transform.localScale.y;
 
         Transform frontWall = Instantiate(genericWall, transform);
-        frontWall.localScale = new Vector3(1.1f, height, width);
+        frontWall.localScale = new Vector3(.95f, height, width);
         frontWall.localPosition = new Vector3(0f, height / 2f, 0.5f);
         walls[0] = frontWall;
 
         Transform rightWall = Instantiate(genericWall, transform);
-        rightWall.localScale = new Vector3(width, height, 1.1f);
-        rightWall.localPosition = new Vector3(0.5f, height / 2f, 0f);
+        rightWall.localScale = new Vector3(width, height, .95f);
+        rightWall.localPosition = new Vector3(.5f, height / 2f, 0f);
         walls[1] = rightWall;
 
         Transform backWall = Instantiate(genericWall, transform);
-        backWall.localScale = new Vector3(1.1f, height, width);
+        backWall.localScale = new Vector3(.95f, height, width);
         backWall.localPosition = new Vector3(0f, height / 2f, -0.5f);
         walls[2] = backWall;
 
         Transform leftWall = Instantiate(genericWall, transform);
-        leftWall.localScale = new Vector3(width, height, 1.1f);
+        leftWall.localScale = new Vector3(width, height, .95f);
         leftWall.localPosition = new Vector3(-0.5f, height / 2f, 0f);
         walls[3] = leftWall;
     }
@@ -65,31 +65,6 @@ public class Cell : MonoBehaviour
     {
         RemoveWall(Wall.Front);
     }
-    
-    //private void Update()
-    //{
-    //    if (Input.GetKeyDown(KeyCode.Space))
-    //    {
-    //        Create(Random.Range(1f, 7f));
-    //    }
-    //    if (Input.GetKeyDown(KeyCode.Alpha1))
-    //    {
-    //        RemoveWall(Wall.Front);
-    //    }
-    //    if (Input.GetKeyDown(KeyCode.Alpha2))
-    //    {
-    //        RemoveWall(Wall.Right);
-    //    }
-    //    if (Input.GetKeyDown(KeyCode.Alpha3))
-    //    {
-    //        RemoveWall(Wall.Back);
-    //    }
-    //    if (Input.GetKeyDown(KeyCode.Alpha4))
-    //    {
-    //        RemoveWall(Wall.Left);
-    //    }
-
-    //}
 
     /// <summary>
     /// Removes the given wall from the cell

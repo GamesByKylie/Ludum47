@@ -7,6 +7,7 @@ public class DialogTrigger : MonoBehaviour
     public DialogController dc;
     public PlayerHealth ph;
     public string startNode;
+    public GameObject controlsText;
 
     private bool playerInRange = false;
     private bool dialogCompleted = false;
@@ -21,6 +22,7 @@ public class DialogTrigger : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             playerInRange = true;
+            controlsText.SetActive(true);
         }
     }
 
@@ -29,6 +31,7 @@ public class DialogTrigger : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             playerInRange = false;
+            controlsText.SetActive(false);
         }
     }
 

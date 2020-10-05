@@ -140,12 +140,11 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        Debug.Log("Player collision enter");
         if (other.CompareTag("Cell"))
         {
-            if (!other.GetComponent<Cell>().triggered)
-            {
+                Debug.Log("Player invoking OnPlayerEnterCell");
                 OnPlayerEnterCell?.Invoke(this, new OnPlayerEnterCellEventArgs { position = other.transform.position });
-            }
         }
         else if (other.CompareTag("Checkpoint"))
         {
