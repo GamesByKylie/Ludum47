@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class PlayerAttack : Attack
 {
+    public Weapon sword;
 
     private void Start()
     {
-        weapon.gameObject.SetActive(false);
+        sword.gameObject.SetActive(false);
     }
 
     private void Update()
@@ -19,7 +20,7 @@ public class PlayerAttack : Attack
         
         if (timer >= currentWeapon.cooldown && Input.GetKeyDown(KeyCode.Mouse0))
         {
-            if (currentWeapon.Equals(unarmed))
+            if (currentWeapon.Equals(primaryAttack))
             {
                 anim.SetTrigger("Attack");
             }

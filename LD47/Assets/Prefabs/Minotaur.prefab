@@ -385,8 +385,11 @@ GameObject:
   - component: {fileID: 7656564641590677220}
   - component: {fileID: 7656564641590677211}
   - component: {fileID: 7656564641590677208}
-  - component: {fileID: 7656564641590677209}
   - component: {fileID: 7656564641590677214}
+  - component: {fileID: 7656564641590677209}
+  - component: {fileID: 3989817267108811240}
+  - component: {fileID: 2404756044557099207}
+  - component: {fileID: 8380887051823425417}
   m_Layer: 0
   m_Name: Minotaur
   m_TagString: Untagged
@@ -420,10 +423,10 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.8436005
-  m_Height: 3.1227112
+  m_Radius: 1.0786844
+  m_Height: 4.719406
   m_Direction: 1
-  m_Center: {x: -0, y: 1.5268786, z: 0}
+  m_Center: {x: 0, y: 2.3252258, z: 0}
 --- !u!54 &7656564641590677221
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -452,8 +455,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2adca696275d31f4c93cccdf477f0937, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 400
+  maxHealth: 100
   healthBar: {fileID: 1463456820}
+  phase2TriggerPercent: 0.7
+  phase3TriggerPercent: 0.3
 --- !u!95 &7656564641590677211
 Animator:
   serializedVersion: 3
@@ -485,26 +490,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59b2aef5f84cda84a865bc111dd3d1c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  unarmed: {fileID: 7656564641590677209}
-  weapon: {fileID: 0}
+  primaryAttack: {fileID: 7656564641590677209}
   target: {fileID: 0}
-  range: 2
---- !u!114 &7656564641590677209
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7656564641590677222}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0b573c6964e0d1f46b7f1581b32dbf32, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  weaponName: minotaur unarmed
-  damage: 25
-  range: 3
-  cooldown: 10
+  swingAttack: {fileID: 3989817267108811240}
+  stunAttack: {fileID: 2404756044557099207}
+  jumpAttack: {fileID: 8380887051823425417}
+  jumpTriggerRange: 20
+  phase: 1
 --- !u!114 &7656564641590677214
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -518,8 +510,74 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 1
+  phase2speed: 1.1
+  phase3speed: 1.1
   target: {fileID: 0}
   minDistance: 2
+--- !u!114 &7656564641590677209
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7656564641590677222}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b573c6964e0d1f46b7f1581b32dbf32, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weaponName: primary
+  damage: 25
+  range: 1.5
+  cooldown: 7
+--- !u!114 &3989817267108811240
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7656564641590677222}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b573c6964e0d1f46b7f1581b32dbf32, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weaponName: swing
+  damage: 10
+  range: 2.5
+  cooldown: 4
+--- !u!114 &2404756044557099207
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7656564641590677222}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b573c6964e0d1f46b7f1581b32dbf32, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weaponName: stun
+  damage: 0
+  range: 7
+  cooldown: 10
+--- !u!114 &8380887051823425417
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7656564641590677222}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b573c6964e0d1f46b7f1581b32dbf32, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weaponName: jump
+  damage: 90
+  range: 2
+  cooldown: 15
 --- !u!1001 &7656564641289846938
 PrefabInstance:
   m_ObjectHideFlags: 0

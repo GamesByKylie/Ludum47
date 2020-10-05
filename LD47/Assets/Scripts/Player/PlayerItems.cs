@@ -33,7 +33,7 @@ public class PlayerItems : MonoBehaviour
             else if (i.itemName == sword.itemName)
             {
                 Debug.Log("You just picked up the sword!");
-                GetComponent<PlayerAttack>().SwitchWeapon(GetComponent<PlayerAttack>().weapon);
+                GetComponent<PlayerAttack>().SwitchWeapon(GetComponent<PlayerAttack>().sword);
             }
             else if (i.itemName == crown.itemName)
             {
@@ -52,6 +52,6 @@ public class PlayerItems : MonoBehaviour
     private void Items_OnPlayerDeath()
     {
         wornCrown.SetActive(false);
-        GetComponent<PlayerAttack>().SwitchWeapon(GetComponent<PlayerAttack>().unarmed);
+        GetComponent<PlayerAttack>().SwitchWeapon(GetComponent<PlayerAttack>().primaryAttack);
     }
 }

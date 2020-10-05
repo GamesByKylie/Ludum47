@@ -5,6 +5,8 @@ using UnityEngine;
 public class EnemyMovement : MonoBehaviour
 {
     public float speed;
+    public float phase2speed;
+    public float phase3speed;
     public Transform target;
     public float minDistance;
 
