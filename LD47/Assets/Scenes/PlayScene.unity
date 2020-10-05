@@ -1466,8 +1466,8 @@ MonoBehaviour:
   mazeParent: {fileID: 1247851043}
   minotaurArena: {fileID: 6646006723767779404, guid: d51d3f1881536544baeab967b2b0afae,
     type: 3}
-  sections: 1
-  dimensions: {x: 4, y: 4}
+  sections: 5
+  dimensions: {x: 12, y: 12}
   cellDimensions: 1.5
   cell: {fileID: 9084794730475928378, guid: e3ff5af7bfb70c64896446cae4677291, type: 3}
   checkpoint: {fileID: 70297960356440293, guid: 3cf52ae10ea8b414c8c43f6f91603918,
@@ -4015,11 +4015,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7086932996543602644, guid: 20f5949abbc4b6b4cb8d2ec8c458f781,
-        type: 3}
-      propertyPath: maxHealth
-      value: 1000
-      objectReference: {fileID: 0}
     - target: {fileID: 7086932996543602645, guid: 20f5949abbc4b6b4cb8d2ec8c458f781,
         type: 3}
       propertyPath: mg
@@ -4039,11 +4034,6 @@ PrefabInstance:
         type: 3}
       propertyPath: dashDuration
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7086932996543602645, guid: 20f5949abbc4b6b4cb8d2ec8c458f781,
-        type: 3}
-      propertyPath: speed
-      value: 3.3
       objectReference: {fileID: 0}
     - target: {fileID: 7086932996543602647, guid: 20f5949abbc4b6b4cb8d2ec8c458f781,
         type: 3}

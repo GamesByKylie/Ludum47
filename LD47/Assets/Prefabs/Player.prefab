@@ -693,7 +693,7 @@ MonoBehaviour:
   sm: {fileID: 0}
   mg: {fileID: 0}
   playerMazeSpawn: {fileID: 0}
-  speed: 3
+  speed: 3.3
   rotSpeed: 10
   rotLimits: {x: -45, y: 60}
   dashSpeed: 3
