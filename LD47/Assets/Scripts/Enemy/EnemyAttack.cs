@@ -14,6 +14,7 @@ public class EnemyAttack : Attack
     public float jumpDistance;
     public GameObject jumpGroundBullet;
     public Transform[] bulletSpawns;
+    public StunSphere sphere;
 
 
     [HideInInspector]public int phase = 1;
@@ -120,6 +121,12 @@ public class EnemyAttack : Attack
         {
             StartCoroutine(pm.FreezeForTime(stunDuration));
         }
+    }
+
+    public void MakeStunSphere()
+    {
+        StunSphere s = Instantiate(sphere, transform.position, transform.rotation);
+        s.StartExpansion(stunAttack.range);
     }
 
     public void MoveJump()

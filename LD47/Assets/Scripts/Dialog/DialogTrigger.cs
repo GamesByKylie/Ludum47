@@ -22,7 +22,7 @@ public class DialogTrigger : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             playerInRange = true;
-            controlsText.SetActive(true);
+            controlsText.SetActive(!dialogCompleted);
         }
     }
 
@@ -39,6 +39,7 @@ public class DialogTrigger : MonoBehaviour
     {
         if (playerInRange && !dialogCompleted && (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.Mouse0)))
         {
+            controlsText.SetActive(false);
             dc.StartDialog(startNode);
             dialogCompleted = true;
         }

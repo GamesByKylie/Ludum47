@@ -140,10 +140,8 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Player collision enter");
         if (other.CompareTag("Cell"))
         {
-                Debug.Log("Player invoking OnPlayerEnterCell");
                 OnPlayerEnterCell?.Invoke(this, new OnPlayerEnterCellEventArgs { position = other.transform.position });
         }
         else if (other.CompareTag("Checkpoint"))
@@ -209,7 +207,19 @@ public class PlayerMovement : MonoBehaviour
     {
         StartCoroutine(FreezeForTime(5.2f));
         transform.rotation = Quaternion.Euler(0f, sb.playerEntrance.eulerAngles.y, 0f);
-        cam.transform.rotation = Quaternion.Euler(sb.playerEntrance.eulerAngles.x, 0f, 0f);
+        StartCoroutine(SetCamera());
+    }
+
+    private IEnumerator SetCamera()
+    {
+        yield return null;
+        yield return null;
+        cam.transform.localRotation = Quaternion.Euler(sb.playerEntrance.eulerAngles.x, 0f, 0f);
+        Debug.Log($"Frame 1: set to ({cam.transform.localEulerAngles.x}, {cam.transform.localEulerAngles.y}, {cam.transform.localEulerAngles.z})");
+        yield return null;
+        Debug.Log($"Frame 2: ({cam.transform.localEulerAngles.x}, {cam.transform.localEulerAngles.y}, {cam.transform.localEulerAngles.z})");
+        yield return null;
+        Debug.Log($"Frame 3: ({cam.transform.localEulerAngles.x}, {cam.transform.localEulerAngles.y}, {cam.transform.localEulerAngles.z})");
     }
 
     public IEnumerator FreezeForTime(float pause)
