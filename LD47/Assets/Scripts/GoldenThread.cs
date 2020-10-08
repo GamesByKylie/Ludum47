@@ -64,8 +64,9 @@ public class GoldenThread : MonoBehaviour
         }
     }
 
-    private void Thread_OnPlayerEnterCheckpoint(object senter, PlayerMovement.OnPlayerEnterCellEventArgs pos)
+    private void Thread_OnPlayerEnterCheckpoint(object sender, PlayerMovement.OnPlayerEnterCellEventArgs pos)
     {
+        Debug.Log("Thread knows that player hit a checkpoint");
         locked = true;
 
         //First, once we're on a checkpoint we don't want to do any of the other stuff
@@ -92,6 +93,10 @@ public class GoldenThread : MonoBehaviour
         {
             rend.positionCount = 1;
             allowPath = false;
+        }
+        else
+        {
+            Debug.Log("Not resetting because a checkpoint was hit");
         }
     }
 

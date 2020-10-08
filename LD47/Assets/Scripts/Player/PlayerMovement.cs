@@ -21,6 +21,7 @@ public class PlayerMovement : MonoBehaviour
     [Header("General Movement")]
     public float speed;
     public float rotSpeed;
+    public float mazeRotSpeed;
     public Vector2 rotLimits;
 
     [Header("Dash")]
@@ -37,9 +38,12 @@ public class PlayerMovement : MonoBehaviour
     private bool dashing = false;
     private StartBoss sb;
     private Animator anim;
+    private float currentRotSpeed;
 
     private void Start()
     {
+        currentRotSpeed = rotSpeed;
+
         rb = GetComponent<Rigidbody>();
         cam = GetComponentInChildren<Camera>();
         ph = GetComponent<PlayerHealth>();
@@ -114,11 +118,11 @@ public class PlayerMovement : MonoBehaviour
             float lookHoriz = Input.GetAxis("Mouse X");
             float lookVert = Input.GetAxis("Mouse Y");
 
-            Vector3 rotation = new Vector3(0f, lookHoriz, 0f) * rotSpeed;
+            Vector3 rotation = new Vector3(0f, lookHoriz, 0f) * currentRotSpeed;
 
             transform.localEulerAngles += rotation;
         
-            cam.transform.localEulerAngles += new Vector3(lookVert, 0f, 0f) * rotSpeed;
+            cam.transform.localEulerAngles += new Vector3(lookVert, 0f, 0f) * currentRotSpeed;
             float eulerX = cam.transform.localEulerAngles.x;
 
             if (eulerX < 360 && eulerX > 180)
@@ -146,10 +150,7 @@ public class PlayerMovement : MonoBehaviour
         }
         else if (other.CompareTag("Checkpoint"))
         {
-            if (!other.GetComponent<Cell>().triggered)
-            {
-                OnPlayerEnterCheckpoint?.Invoke(this, new OnPlayerEnterCellEventArgs { position = other.transform.position });            
-            }
+             OnPlayerEnterCheckpoint?.Invoke(this, new OnPlayerEnterCellEventArgs { position = other.transform.position });
         }
     }
 
@@ -163,6 +164,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Player_OnMazeStart()
     {
+        currentRotSpeed = mazeRotSpeed;
         transform.position = playerMazeSpawn.position;
         transform.rotation = playerMazeSpawn.rotation;
         ph.enabled = true;
@@ -171,6 +173,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Movement_OnPlayerDeath()
     {
+        currentRotSpeed = rotSpeed;
         StartCoroutine(DeactivateHealthAndAttack());
     }
 
@@ -215,11 +218,6 @@ public class PlayerMovement : MonoBehaviour
         yield return null;
         yield return null;
         cam.transform.localRotation = Quaternion.Euler(sb.playerEntrance.eulerAngles.x, 0f, 0f);
-        Debug.Log($"Frame 1: set to ({cam.transform.localEulerAngles.x}, {cam.transform.localEulerAngles.y}, {cam.transform.localEulerAngles.z})");
-        yield return null;
-        Debug.Log($"Frame 2: ({cam.transform.localEulerAngles.x}, {cam.transform.localEulerAngles.y}, {cam.transform.localEulerAngles.z})");
-        yield return null;
-        Debug.Log($"Frame 3: ({cam.transform.localEulerAngles.x}, {cam.transform.localEulerAngles.y}, {cam.transform.localEulerAngles.z})");
     }
 
     public IEnumerator FreezeForTime(float pause)
